@@ -1,0 +1,19 @@
+# Python dependencies for Claudia Data Pipeline
+# Optional - the current ETL script only uses Python standard library
+# These are here for future enhancements (database loading, advanced processing, etc.)
+
+# Core data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Database support
+pymysql>=1.1.0           # MySQL driver
+psycopg2-binary>=2.9.0   # PostgreSQL driver
+sqlite3-python>=1.0.0    # SQLite (usually included)
+
+# Data validation and serialization
+python-dotenv>=1.0.0     # Environment variable management
+marshmallow>=3.20.0      # Data validation
+
+# Utilities
+python-dateutil>=2.8.0   # Date handling

@@ -1,16 +1,3 @@
-# Example Kaggle dataset placement guide
-
-Place your downloaded Kaggle CSV file here.
-
-## Steps:
-
-1. Go to https://www.kaggle.com/datasets
-2. Search for "recipes" or similar
-3. Download the CSV file (you need a Kaggle account)
-4. Extract and rename to `recipes.csv`
-5. Place in this directory
-6. Run: `python ../scripts/etl_script.py --input recipes.csv --output ../clean/recipes_processed.json`
-
 ## File Format
 
 Expected CSV structure (columns will be auto-detected):

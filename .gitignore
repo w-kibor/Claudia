@@ -1,0 +1,25 @@
+# Data files - too large for GitHub
+data-pipeline/raw/*.csv
+data-pipeline/raw/*.json
+data-pipeline/raw/*.xlsx
+data-pipeline/raw/*.parquet
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

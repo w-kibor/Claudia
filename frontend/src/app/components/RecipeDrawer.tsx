@@ -1,7 +1,7 @@
 import { X, Clock, Users, ChefHat, Send } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Recipe } from './RecipeCard';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import * as Checkbox from '@radix-ui/react-checkbox';
 import { Check } from 'lucide-react';
 
@@ -10,49 +10,27 @@ interface RecipeDrawerProps {
   onClose: () => void;
 }
 
-const mockRecipeDetails = {
-  servings: 4,
-  calories: 420,
-  ingredients: [
-    { id: '1', name: 'Extra virgin olive oil', amount: '3 tbsp', available: true },
-    { id: '2', name: 'Garlic cloves, minced', amount: '4', available: true },
-    { id: '3', name: 'Cherry tomatoes', amount: '2 cups', available: true },
-    { id: '4', name: 'Fresh basil leaves', amount: '1 cup', available: false },
-    { id: '5', name: 'Spaghetti', amount: '1 lb', available: true },
-    { id: '6', name: 'Parmesan cheese, grated', amount: '1/2 cup', available: true },
-    { id: '7', name: 'Red pepper flakes', amount: '1 tsp', available: false },
-  ],
-  steps: [
-    {
-      id: '1',
-      instruction: 'Bring a large pot of salted water to a boil. Add the spaghetti and cook according to package directions until <span class="highlight">al dente</span>.',
-    },
-    {
-      id: '2',
-      instruction: 'While pasta cooks, heat olive oil in a large skillet over medium heat. <span class="highlight">Sauté</span> garlic until fragrant, about 1 minute.',
-    },
-    {
-      id: '3',
-      instruction: 'Add cherry tomatoes and cook until they begin to burst, about 5-7 minutes. Season with salt and pepper.',
-    },
-    {
-      id: '4',
-      instruction: '<span class="highlight">Deglaze</span> the pan with 1/4 cup pasta water, scraping up any browned bits from the bottom.',
-    },
-    {
-      id: '5',
-      instruction: 'Drain pasta, reserving 1 cup of pasta water. Add pasta to the skillet with tomatoes and toss to combine.',
-    },
-    {
-      id: '6',
-      instruction: 'Remove from heat, add fresh basil and Parmesan. <span class="highlight">Temper</span> the cheese by tossing constantly to create a silky sauce.',
-    },
-  ],
-};
-
 export function RecipeDrawer({ recipe, onClose }: RecipeDrawerProps) {
   const [checkedIngredients, setCheckedIngredients] = useState<Set<string>>(new Set());
   const [chatMessage, setChatMessage] = useState('');
+
+  // Transform ingredients array to the format needed for the UI
+  const ingredients = useMemo(() => {
+    if (!recipe?.ingredients) return [];
+    return recipe.ingredients.map((ingredient, index) => ({
+      id: `ing-${index}`,
+      name: ingredient,
+    }));
+  }, [recipe?.ingredients]);
+
+  // Transform directions array to the format needed for the UI
+  const steps = useMemo(() => {
+    if (!recipe?.directions) return [];
+    return recipe.directions.map((direction, index) => ({
+      id: `step-${index}`,
+      instruction: direction,
+    }));
+  }, [recipe?.directions]);
 
   const handleCheckIngredient = (id: string) => {
     setCheckedIngredients(prev => {
@@ -114,13 +92,14 @@ export function RecipeDrawer({ recipe, onClose }: RecipeDrawerProps) {
                     <span>{recipe.prepTime}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    <span>{mockRecipeDetails.servings} servings</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
                     <ChefHat className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     <span>{recipe.difficulty}</span>
                   </div>
+                  {recipe.cuisine && (
+                    <div className="px-2 py-0.5 rounded-full bg-accent/10 text-accent text-xs">
+                      {recipe.cuisine}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -131,66 +110,60 @@ export function RecipeDrawer({ recipe, onClose }: RecipeDrawerProps) {
                 {/* Interactive Ingredients */}
                 <section>
                   <h2 className="text-xl sm:text-2xl mb-4 font-semibold">Ingredients</h2>
-                  <div className="space-y-2">
-                    {mockRecipeDetails.ingredients.map((ingredient) => (
-                      <label
-                        key={ingredient.id}
-                        className="flex items-center gap-3 p-2 sm:p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors group"
-                      >
-                        <Checkbox.Root
-                          checked={checkedIngredients.has(ingredient.id)}
-                          onCheckedChange={() => handleCheckIngredient(ingredient.id)}
-                          className="w-5 h-5 rounded border-2 border-border bg-background flex items-center justify-center data-[state=checked]:bg-accent data-[state=checked]:border-accent transition-all flex-shrink-0"
+                  {ingredients.length > 0 ? (
+                    <div className="space-y-2">
+                      {ingredients.map((ingredient) => (
+                        <label
+                          key={ingredient.id}
+                          className="flex items-center gap-3 p-2 sm:p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors group"
                         >
-                          <Checkbox.Indicator>
-                            <Check className="w-3.5 h-3.5 text-accent-foreground" />
-                          </Checkbox.Indicator>
-                        </Checkbox.Root>
-                        <span
-                          className={`flex-1 text-sm sm:text-base ${
-                            checkedIngredients.has(ingredient.id)
-                              ? 'line-through text-muted-foreground'
-                              : ''
-                          }`}
-                        >
-                          {ingredient.name}
-                        </span>
-                        <span className="text-xs sm:text-sm text-muted-foreground flex-shrink-0">
-                          {ingredient.amount}
-                        </span>
-                        {!ingredient.available && (
-                          <span className="text-xs px-2 py-0.5 rounded-full bg-destructive/10 text-destructive flex-shrink-0">
-                            Missing
+                          <Checkbox.Root
+                            checked={checkedIngredients.has(ingredient.id)}
+                            onCheckedChange={() => handleCheckIngredient(ingredient.id)}
+                            className="w-5 h-5 rounded border-2 border-border bg-background flex items-center justify-center data-[state=checked]:bg-accent data-[state=checked]:border-accent transition-all flex-shrink-0"
+                          >
+                            <Checkbox.Indicator>
+                              <Check className="w-3.5 h-3.5 text-accent-foreground" />
+                            </Checkbox.Indicator>
+                          </Checkbox.Root>
+                          <span
+                            className={`flex-1 text-sm sm:text-base ${
+                              checkedIngredients.has(ingredient.id)
+                                ? 'line-through text-muted-foreground'
+                                : ''
+                            }`}
+                          >
+                            {ingredient.name}
                           </span>
-                        )}
-                      </label>
-                    ))}
-                  </div>
+                        </label>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-muted-foreground">No ingredients available</p>
+                  )}
                 </section>
 
                 {/* Step-by-Step Instructions */}
                 <section>
                   <h2 className="text-xl sm:text-2xl mb-4 font-semibold">Instructions</h2>
-                  <div className="space-y-4 sm:space-y-6">
-                    {mockRecipeDetails.steps.map((step, index) => (
-                      <div key={step.id} className="flex gap-3 sm:gap-4">
-                        <div className="w-8 h-8 rounded-full bg-accent text-accent-foreground flex items-center justify-center flex-shrink-0 font-medium text-sm">
-                          {index + 1}
+                  {steps.length > 0 ? (
+                    <div className="space-y-4 sm:space-y-6">
+                      {steps.map((step, index) => (
+                        <div key={step.id} className="flex gap-3 sm:gap-4">
+                          <div className="w-8 h-8 rounded-full bg-accent text-accent-foreground flex items-center justify-center flex-shrink-0 font-medium text-sm">
+                            {index + 1}
+                          </div>
+                          <div className="flex-1 pt-1">
+                            <p className="text-sm sm:text-base text-foreground/90 leading-relaxed">
+                              {step.instruction}
+                            </p>
+                          </div>
                         </div>
-                        <div className="flex-1 pt-1">
-                          <p
-                            className="text-sm sm:text-base text-foreground/90 leading-relaxed"
-                            dangerouslySetInnerHTML={{
-                              __html: step.instruction.replace(
-                                /<span class="highlight">/g,
-                                '<span class="font-medium text-accent">'
-                              ),
-                            }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-muted-foreground">No instructions available</p>
+                  )}
                 </section>
               </div>
             </div>

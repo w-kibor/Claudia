@@ -7,6 +7,10 @@ export interface Recipe {
   prepTime: string;
   difficulty: 'Easy' | 'Medium' | 'Hard';
   cuisine: string;
+  ingredients?: string[];
+  directions?: string[];
+  source?: string;
+  link?: string;
 }
 
 interface RecipeCardProps {

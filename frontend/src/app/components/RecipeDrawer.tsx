@@ -1,0 +1,222 @@
+import { X, Clock, Users, ChefHat, Send } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Recipe } from './RecipeCard';
+import { useState } from 'react';
+import * as Checkbox from '@radix-ui/react-checkbox';
+import { Check } from 'lucide-react';
+
+interface RecipeDrawerProps {
+  recipe: Recipe | null;
+  onClose: () => void;
+}
+
+const mockRecipeDetails = {
+  servings: 4,
+  calories: 420,
+  ingredients: [
+    { id: '1', name: 'Extra virgin olive oil', amount: '3 tbsp', available: true },
+    { id: '2', name: 'Garlic cloves, minced', amount: '4', available: true },
+    { id: '3', name: 'Cherry tomatoes', amount: '2 cups', available: true },
+    { id: '4', name: 'Fresh basil leaves', amount: '1 cup', available: false },
+    { id: '5', name: 'Spaghetti', amount: '1 lb', available: true },
+    { id: '6', name: 'Parmesan cheese, grated', amount: '1/2 cup', available: true },
+    { id: '7', name: 'Red pepper flakes', amount: '1 tsp', available: false },
+  ],
+  steps: [
+    {
+      id: '1',
+      instruction: 'Bring a large pot of salted water to a boil. Add the spaghetti and cook according to package directions until <span class="highlight">al dente</span>.',
+    },
+    {
+      id: '2',
+      instruction: 'While pasta cooks, heat olive oil in a large skillet over medium heat. <span class="highlight">Sauté</span> garlic until fragrant, about 1 minute.',
+    },
+    {
+      id: '3',
+      instruction: 'Add cherry tomatoes and cook until they begin to burst, about 5-7 minutes. Season with salt and pepper.',
+    },
+    {
+      id: '4',
+      instruction: '<span class="highlight">Deglaze</span> the pan with 1/4 cup pasta water, scraping up any browned bits from the bottom.',
+    },
+    {
+      id: '5',
+      instruction: 'Drain pasta, reserving 1 cup of pasta water. Add pasta to the skillet with tomatoes and toss to combine.',
+    },
+    {
+      id: '6',
+      instruction: 'Remove from heat, add fresh basil and Parmesan. <span class="highlight">Temper</span> the cheese by tossing constantly to create a silky sauce.',
+    },
+  ],
+};
+
+export function RecipeDrawer({ recipe, onClose }: RecipeDrawerProps) {
+  const [checkedIngredients, setCheckedIngredients] = useState<Set<string>>(new Set());
+  const [chatMessage, setChatMessage] = useState('');
+
+  const handleCheckIngredient = (id: string) => {
+    setCheckedIngredients(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+  };
+
+  return (
+    <AnimatePresence>
+      {recipe && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-30"
+          />
+
+          {/* Drawer */}
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            className="fixed right-0 top-0 h-screen w-full md:w-[60%] bg-background z-40 shadow-2xl overflow-hidden flex flex-col"
+          >
+            {/* Sticky Hero Header */}
+            <div className="relative h-80 flex-shrink-0">
+              <img
+                src={recipe.image}
+                alt={recipe.name}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+              
+              {/* Close Button */}
+              <button
+                onClick={onClose}
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm border border-border flex items-center justify-center hover:bg-accent transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Recipe Title */}
+              <div className="absolute bottom-6 left-6 right-6">
+                <h1 className="text-4xl mb-2">{recipe.name}</h1>
+                <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="w-4 h-4" />
+                    <span>{recipe.prepTime}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Users className="w-4 h-4" />
+                    <span>{mockRecipeDetails.servings} servings</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <ChefHat className="w-4 h-4" />
+                    <span>{recipe.difficulty}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Scrollable Content */}
+            <div className="flex-1 overflow-y-auto">
+              <div className="p-6 space-y-8 pb-32">
+                {/* Interactive Ingredients */}
+                <section>
+                  <h2 className="text-2xl mb-4">Ingredients</h2>
+                  <div className="space-y-2">
+                    {mockRecipeDetails.ingredients.map((ingredient) => (
+                      <label
+                        key={ingredient.id}
+                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted/50 cursor-pointer transition-colors group"
+                      >
+                        <Checkbox.Root
+                          checked={checkedIngredients.has(ingredient.id)}
+                          onCheckedChange={() => handleCheckIngredient(ingredient.id)}
+                          className="w-5 h-5 rounded border-2 border-border bg-background flex items-center justify-center data-[state=checked]:bg-accent data-[state=checked]:border-accent transition-all"
+                        >
+                          <Checkbox.Indicator>
+                            <Check className="w-3.5 h-3.5 text-accent-foreground" />
+                          </Checkbox.Indicator>
+                        </Checkbox.Root>
+                        <span
+                          className={`flex-1 ${
+                            checkedIngredients.has(ingredient.id)
+                              ? 'line-through text-muted-foreground'
+                              : ''
+                          }`}
+                        >
+                          {ingredient.name}
+                        </span>
+                        <span className="text-sm text-muted-foreground">
+                          {ingredient.amount}
+                        </span>
+                        {!ingredient.available && (
+                          <span className="text-xs px-2 py-0.5 rounded-full bg-destructive/10 text-destructive">
+                            Missing
+                          </span>
+                        )}
+                      </label>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Step-by-Step Instructions */}
+                <section>
+                  <h2 className="text-2xl mb-4">Instructions</h2>
+                  <div className="space-y-6">
+                    {mockRecipeDetails.steps.map((step, index) => (
+                      <div key={step.id} className="flex gap-4">
+                        <div className="w-8 h-8 rounded-full bg-accent text-accent-foreground flex items-center justify-center flex-shrink-0 font-medium">
+                          {index + 1}
+                        </div>
+                        <div className="flex-1 pt-1">
+                          <p
+                            className="text-foreground/90 leading-relaxed"
+                            dangerouslySetInnerHTML={{
+                              __html: step.instruction.replace(
+                                /<span class="highlight">/g,
+                                '<span class="font-medium text-accent">'
+                              ),
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              </div>
+            </div>
+
+            {/* AI Sous-Chef Chat - Fixed at bottom */}
+            <div className="absolute bottom-0 left-0 right-0 bg-card border-t border-border p-4 backdrop-blur-md">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                <span className="text-xs text-muted-foreground">AI Sous-Chef ready to help</span>
+              </div>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={chatMessage}
+                  onChange={(e) => setChatMessage(e.target.value)}
+                  placeholder="Ask to modify ingredients, adjust servings..."
+                  className="flex-1 px-4 py-2.5 rounded-lg bg-input-background border border-border focus:outline-none focus:ring-2 focus:ring-accent/50"
+                />
+                <button className="px-4 py-2.5 rounded-lg bg-accent text-accent-foreground hover:bg-accent/90 transition-colors flex items-center gap-2">
+                  <Send className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}

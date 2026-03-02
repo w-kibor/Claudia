@@ -1,8 +1,17 @@
 # Data files - too large for GitHub
-data-pipeline/raw/*.csv
-data-pipeline/raw/*.json
-data-pipeline/raw/*.xlsx
-data-pipeline/raw/*.parquet
+data-pipeline/raw/**
+data-pipeline/clean/**
+
+# Node.js & Frontend
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+dist/
+build/
+.next/
 
 # Python
 __pycache__/
@@ -12,14 +21,34 @@ __pycache__/
 .Python
 env/
 venv/
+ENV/
+pip-log.txt
+pip-delete-this-directory.txt
 *.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment
+.env
+.env.local
+.env.*.local
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*.sublime-workspace
+*.sublime-project
 
 # OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db

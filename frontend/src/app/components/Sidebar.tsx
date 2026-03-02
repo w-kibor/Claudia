@@ -2,7 +2,11 @@ import { ChefHat, Database, MessageSquare, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
-export function Sidebar() {
+interface SidebarProps {
+  onClose?: () => void;
+}
+
+export function Sidebar({ onClose }: SidebarProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const menuItems = [
@@ -18,27 +22,40 @@ export function Sidebar() {
         initial={{ width: '4rem' }}
         animate={{ width: isExpanded ? '16rem' : '4rem' }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="h-screen bg-sidebar border-r border-sidebar-border flex flex-col relative z-20"
+        className="h-screen bg-sidebar border-r border-sidebar-border flex flex-col relative z-20 w-16"
       >
         {/* Header */}
-        <div className="h-16 flex items-center justify-between px-4 border-b border-sidebar-border">
+        <div className="h-16 flex items-center justify-between px-3 md:px-4 border-b border-sidebar-border flex-shrink-0">
           {isExpanded ? (
             <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="text-lg tracking-tight text-sidebar-foreground"
+              className="text-base md:text-lg tracking-tight text-sidebar-foreground truncate"
             >
               Claudia
             </motion.h1>
           ) : (
-            <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
               <ChefHat className="w-5 h-5 text-accent-foreground" />
             </div>
           )}
           <button
+            onClick={() => {
+              setIsExpanded(!isExpanded);
+              onClose?.();
+            }}
+            className="w-8 h-8 rounded-lg hover:bg-sidebar-accent flex items-center justify-center transition-colors md:hidden flex-shrink-0"
+          >
+            {isExpanded ? (
+              <X className="w-4 h-4 text-sidebar-foreground" />
+            ) : (
+              <Menu className="w-4 h-4 text-sidebar-foreground" />
+            )}
+          </button>
+          <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="w-8 h-8 rounded-lg hover:bg-sidebar-accent flex items-center justify-center transition-colors"
+            className="w-8 h-8 rounded-lg hover:bg-sidebar-accent flex items-center justify-center transition-colors hidden md:flex flex-shrink-0"
           >
             {isExpanded ? (
               <X className="w-4 h-4 text-sidebar-foreground" />
@@ -49,11 +66,12 @@ export function Sidebar() {
         </div>
 
         {/* Menu Items */}
-        <nav className="flex-1 p-3 space-y-1">
+        <nav className="flex-1 p-2 md:p-3 space-y-1 overflow-y-auto">
           {menuItems.map((item, index) => (
             <button
               key={index}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors ${
+              onClick={onClose}
+              className={`w-full flex items-center gap-3 px-2 md:px-3 py-2 md:py-2.5 rounded-lg transition-colors ${
                 item.active
                   ? 'bg-sidebar-accent text-sidebar-accent-foreground'
                   : 'text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'

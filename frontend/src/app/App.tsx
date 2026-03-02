@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Masonry from 'react-responsive-masonry';
 import { Sidebar } from './components/Sidebar';
 import { RecipeCard, Recipe } from './components/RecipeCard';
 import { RecipeDrawer } from './components/RecipeDrawer';
 import { KitchenStats } from './components/KitchenStats';
 import { FloatingActionButton } from './components/FloatingActionButton';
-import { Moon, Sun } from 'lucide-react';
+import { Moon, Sun, Menu, X } from 'lucide-react';
 
 const mockRecipes: Recipe[] = [
   {
@@ -77,6 +77,33 @@ const mockRecipes: Recipe[] = [
 export default function App() {
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
   const [isDark, setIsDark] = useState(true);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  // Get responsive column count
+  const getColumnCount = () => {
+    if (window.innerWidth < 640) return 1; // sm
+    if (window.innerWidth < 1024) return 2; // md
+    if (window.innerWidth < 1280) return 3; // lg
+    return 4; // xl
+  };
+
+  const [columnCount, setColumnCount] = useState(getColumnCount());
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setColumnCount(getColumnCount());
+      setIsMobile(window.innerWidth < 768);
+      // Close mobile sidebar on desktop
+      if (window.innerWidth >= 768) {
+        setIsMobileSidebarOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const toggleTheme = () => {
     setIsDark(!isDark);
@@ -84,24 +111,48 @@ export default function App() {
   };
 
   return (
-    <div className={`h-screen flex ${isDark ? 'dark' : ''}`}>
-      {/* Sidebar */}
-      <Sidebar />
+    <div className={`h-screen flex flex-col md:flex-row ${isDark ? 'dark' : ''}`}>
+      {/* Mobile Sidebar Backdrop */}
+      {isMobile && isMobileSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-10 md:hidden"
+          onClick={() => setIsMobileSidebarOpen(false)}
+        />
+      )}
+
+      {/* Sidebar - Hidden on mobile unless open */}
+      <div className={`${isMobileSidebarOpen ? 'fixed left-0 top-0 z-20 h-screen' : 'hidden md:flex'}`}>
+        <Sidebar onClose={() => setIsMobileSidebarOpen(false)} />
+      </div>
 
       {/* Main Content Area */}
-      <main className="flex-1 overflow-y-auto bg-background">
+      <main className="flex-1 overflow-y-auto bg-background min-h-screen md:min-h-0">
         {/* Header */}
         <header className="sticky top-0 z-10 h-16 border-b border-border bg-background/80 backdrop-blur-xl">
-          <div className="h-full px-6 flex items-center justify-between">
-            <div>
-              <h1 className="text-xl">Recipe Collection</h1>
-              <p className="text-xs text-muted-foreground">
-                Discover and cook amazing dishes
-              </p>
+          <div className="h-full px-4 md:px-6 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3 flex-1 min-w-0">
+              {isMobile && (
+                <button
+                  onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
+                  className="w-9 h-9 rounded-lg hover:bg-muted flex items-center justify-center transition-colors flex-shrink-0"
+                >
+                  {isMobileSidebarOpen ? (
+                    <X className="w-5 h-5" />
+                  ) : (
+                    <Menu className="w-5 h-5" />
+                  )}
+                </button>
+              )}
+              <div className="min-w-0">
+                <h1 className="text-lg md:text-xl font-semibold truncate">Recipe Collection</h1>
+                <p className="text-xs text-muted-foreground hidden sm:block">
+                  Discover and cook amazing dishes
+                </p>
+              </div>
             </div>
             <button
               onClick={toggleTheme}
-              className="w-9 h-9 rounded-lg hover:bg-muted flex items-center justify-center transition-colors"
+              className="w-9 h-9 rounded-lg hover:bg-muted flex items-center justify-center transition-colors flex-shrink-0"
             >
               {isDark ? (
                 <Sun className="w-4 h-4" />
@@ -113,14 +164,14 @@ export default function App() {
         </header>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           {/* Kitchen Stats */}
           <div className="mb-6">
             <KitchenStats />
           </div>
 
           {/* Masonry Grid */}
-          <Masonry columnsCount={4} gutter="1.5rem">
+          <Masonry columnsCount={columnCount} gutter="1rem sm:1.5rem">
             {mockRecipes.map((recipe) => (
               <RecipeCard
                 key={recipe.id}

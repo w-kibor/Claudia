@@ -4,6 +4,7 @@ import { Recipe } from './RecipeCard';
 import { useState, useMemo } from 'react';
 import * as Checkbox from '@radix-ui/react-checkbox';
 import { Check } from 'lucide-react';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface RecipeDrawerProps {
   recipe: Recipe | null;
@@ -68,7 +69,7 @@ export function RecipeDrawer({ recipe, onClose }: RecipeDrawerProps) {
           >
             {/* Sticky Hero Header */}
             <div className="relative h-48 sm:h-64 md:h-80 flex-shrink-0">
-              <img
+              <ImageWithFallback
                 src={recipe.image}
                 alt={recipe.name}
                 className="w-full h-full object-cover"

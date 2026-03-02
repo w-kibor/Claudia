@@ -1,4 +1,5 @@
 import { Clock, TrendingUp } from 'lucide-react';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 export interface Recipe {
   id: string;
@@ -32,7 +33,7 @@ export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
     >
       {/* Image */}
       <div className="aspect-[4/5] overflow-hidden bg-muted">
-        <img 
+        <ImageWithFallback
           src={recipe.image} 
           alt={recipe.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"

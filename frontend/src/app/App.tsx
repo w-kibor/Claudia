@@ -159,7 +159,7 @@ export default function App() {
 
           {/* Masonry Grid */}
           {!loading && !error && recipes.length > 0 && (
-            <Masonry columnsCount={columnCount} gutter="1rem sm:1.5rem">
+            <Masonry columnsCount={columnCount} gutter="1.5rem">
               {recipes.map((recipe) => (
                 <RecipeCard
                   key={recipe.id}

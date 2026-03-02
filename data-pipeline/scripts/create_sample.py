@@ -23,6 +23,15 @@ def create_sample_dataset():
     difficulties = ['Easy', 'Medium', 'Hard']
     cuisines = ['American', 'Italian', 'Mexican', 'Asian', 'French', 'Mediterranean', 'Indian', 'International']
     
+    def get_placeholder_image(index):
+        """Generate a placeholder image URL"""
+        # Use placeholder.com which is reliable
+        colors = ['ff6b6b', 'f06292', '9c27b0', '673ab7', '3f51b5', '2196f3', 
+                  '00bcd4', '009688', '4caf50', 'cddc39', 'ffeb3b', 'ff9800', 
+                  'ff5722', '795548', 'e91e63', '607d8b']
+        color = colors[index % len(colors)]
+        return f'https://via.placeholder.com/400x500/{color}/ffffff?text=Recipe'
+    
     for idx, row in df.iterrows():
         # Get ingredients and directions
         try:
@@ -47,7 +56,7 @@ def create_sample_dataset():
         recipe = {
             'id': str(idx + 1),
             'name': str(row.get('title', f'Recipe {idx + 1}')).strip(),
-            'image': f'https://images.unsplash.com/photo-{1500000000000 + idx}?w=400',  # Placeholder
+            'image': get_placeholder_image(idx),
             'prepTime': f'{15 + (idx % 45)} min',  # Generate varied times
             'difficulty': difficulties[idx % 3],  # Cycle through difficulties
             'cuisine': cuisine,

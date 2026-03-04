@@ -17,10 +17,18 @@ app.use(express.json());
 // Load recipes data
 let recipes = [];
 try {
-  const dataPath = path.join(__dirname, '../data-pipeline/clean/recipes_sample.json');
+  const dataPath = path.join(__dirname, 'data/recipes_small.json');
   const rawData = fs.readFileSync(dataPath, 'utf-8');
-  recipes = JSON.parse(rawData);
-  console.log(`✅ Loaded ${recipes.length} recipes`);
+  const parsedData = JSON.parse(rawData);
+
+  if (parsedData && parsedData.recipes) {
+    recipes = parsedData.recipes.map(r => ({
+      ...r,
+      name: r.title || 'Unknown Recipe',
+      image: `https://picsum.photos/seed/${r.id}/800/600` // Elegant placeholder for missing imageUrl
+    }));
+    console.log(`✅ Loaded ${recipes.length} recipes from small dataset with mapped images`);
+  }
 } catch (error) {
   console.error('❌ Error loading recipes:', error.message);
 }
@@ -71,7 +79,7 @@ app.get('/api/recipes', (req, res) => {
 app.get('/api/recipes/:id', (req, res) => {
   try {
     const recipe = recipes.find(r => r.id === req.params.id);
-    
+
     if (!recipe) {
       return res.status(404).json({
         success: false,
@@ -92,7 +100,7 @@ app.get('/api/recipes/:id', (req, res) => {
 app.get('/api/recipes/search', (req, res) => {
   try {
     const query = req.query.q?.toLowerCase();
-    
+
     if (!query) {
       return res.status(400).json({
         success: false,
@@ -120,7 +128,7 @@ app.get('/api/recipes/search', (req, res) => {
 app.get('/api/cuisines', (req, res) => {
   try {
     const cuisines = [...new Set(recipes.map(r => r.cuisine))].sort();
-    
+
     res.json({
       success: true,
       data: cuisines
@@ -134,7 +142,7 @@ app.get('/api/cuisines', (req, res) => {
 app.get('/api/recipes/cuisine/:cuisine', (req, res) => {
   try {
     const cuisine = req.params.cuisine;
-    const filtered = recipes.filter(r => 
+    const filtered = recipes.filter(r =>
       r.cuisine.toLowerCase() === cuisine.toLowerCase()
     );
 
@@ -152,7 +160,7 @@ app.get('/api/recipes/cuisine/:cuisine', (req, res) => {
 app.get('/api/recipes/difficulty/:level', (req, res) => {
   try {
     const level = req.params.level;
-    const filtered = recipes.filter(r => 
+    const filtered = recipes.filter(r =>
       r.difficulty.toLowerCase() === level.toLowerCase()
     );
 

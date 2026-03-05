@@ -75,7 +75,7 @@ export function RecipeDrawer({ recipe, onClose }: RecipeDrawerProps) {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-              
+
               {/* Close Button */}
               <button
                 onClick={onClose}
@@ -86,8 +86,8 @@ export function RecipeDrawer({ recipe, onClose }: RecipeDrawerProps) {
 
               {/* Recipe Title */}
               <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 line-clamp-2">{recipe.name}</h1>
-                <div className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm text-muted-foreground flex-wrap">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 line-clamp-2 text-white">{recipe.name}</h1>
+                <div className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm text-white/90 flex-wrap">
                   <div className="flex items-center gap-1.5">
                     <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     <span>{recipe.prepTime}</span>
@@ -110,7 +110,7 @@ export function RecipeDrawer({ recipe, onClose }: RecipeDrawerProps) {
               <div className="p-4 sm:p-6 space-y-6 sm:space-y-8 pb-32">
                 {/* Interactive Ingredients */}
                 <section>
-                  <h2 className="text-xl sm:text-2xl mb-4 font-semibold">Ingredients</h2>
+                  <h2 className="text-xl sm:text-2xl mb-4 font-semibold text-foreground">Ingredients</h2>
                   {ingredients.length > 0 ? (
                     <div className="space-y-2">
                       {ingredients.map((ingredient) => (
@@ -128,11 +128,10 @@ export function RecipeDrawer({ recipe, onClose }: RecipeDrawerProps) {
                             </Checkbox.Indicator>
                           </Checkbox.Root>
                           <span
-                            className={`flex-1 text-sm sm:text-base ${
-                              checkedIngredients.has(ingredient.id)
+                            className={`flex-1 text-sm sm:text-base ${checkedIngredients.has(ingredient.id)
                                 ? 'line-through text-muted-foreground'
-                                : ''
-                            }`}
+                                : 'text-foreground'
+                              }`}
                           >
                             {ingredient.name}
                           </span>
@@ -146,7 +145,7 @@ export function RecipeDrawer({ recipe, onClose }: RecipeDrawerProps) {
 
                 {/* Step-by-Step Instructions */}
                 <section>
-                  <h2 className="text-xl sm:text-2xl mb-4 font-semibold">Instructions</h2>
+                  <h2 className="text-xl sm:text-2xl mb-4 font-semibold text-foreground">Instructions</h2>
                   {steps.length > 0 ? (
                     <div className="space-y-4 sm:space-y-6">
                       {steps.map((step, index) => (

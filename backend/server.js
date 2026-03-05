@@ -22,12 +22,22 @@ try {
   const parsedData = JSON.parse(rawData);
 
   if (parsedData && parsedData.recipes) {
-    recipes = parsedData.recipes.map(r => ({
-      ...r,
-      name: r.title || 'Unknown Recipe',
-      image: `https://picsum.photos/seed/${r.id}/800/600` // Elegant placeholder for missing imageUrl
-    }));
-    console.log(`✅ Loaded ${recipes.length} recipes from small dataset with mapped images`);
+    recipes = parsedData.recipes.map(r => {
+      // Extract a numeric seed from the ID for consistent images
+      const seedMatch = r.id ? r.id.match(/\d+/) : null;
+      const seed = seedMatch ? parseInt(seedMatch[0]) : Math.floor(Math.random() * 1000);
+
+      return {
+        ...r,
+        name: r.title || 'Unknown Recipe',
+        // Use food-specific placeholder images instead of generic picsum
+        image: r.imageUrl || `https://loremflickr.com/800/600/food,recipe?lock=${seed}`,
+        // Format properties for UI
+        prepTime: r.prepTime ? `${r.prepTime} mins` : '20 mins',
+        cuisine: r.cuisine || 'International'
+      };
+    });
+    console.log(`✅ Loaded ${recipes.length} recipes from small dataset with mapped food images`);
   }
 } catch (error) {
   console.error('❌ Error loading recipes:', error.message);

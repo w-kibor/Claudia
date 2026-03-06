@@ -50,6 +50,24 @@ export const recipeAPI = {
     const response = await fetch(`${API_BASE_URL}/stats`);
     if (!response.ok) throw new Error('Failed to fetch stats');
     return response.json();
+  },
+
+  // AI Sous-Chef Integration
+  askSousChef: async (query: string, recipeContext: any) => {
+    const response = await fetch(`${API_BASE_URL}/ai/sous-chef`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ query, recipeContext }),
+    });
+
+    // Specifically catch 500 errors to show API key missing warnings nicely
+    if (!response.ok && response.status !== 500) {
+      throw new Error('Failed to get answer from Sous-Chef');
+    }
+
+    return response.json();
   }
 };
 

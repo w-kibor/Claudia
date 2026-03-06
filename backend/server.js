@@ -3,12 +3,21 @@ import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import OpenAI from 'openai';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// Initialize OpenAI client (requires OPENAI_API_KEY in .env)
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY || 'dummy_key', // Fallback for initialization, will fail on use if not real
+});
 
 // Middleware
 app.use(cors());
@@ -213,6 +222,80 @@ app.get('/api/stats', (req, res) => {
     res.status(500).json({ success: false, error: error.message });
   }
 });
+
+// POST /api/ai/sous-chef
+// Handles AI assistant queries with recipe context
+app.post('/api/ai/sous-chef', async (req, res) => {
+  try {
+    const { query, recipeContext } = req.body;
+
+    if (!query) {
+      return res.status(400).json({ success: false, message: 'Query is required.' });
+    }
+
+    // Check if the API key is actually set
+    if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'dummy_key') {
+      return res.status(500).json({
+        success: false,
+        message: 'OpenAI API key is missing. Please add OPENAI_API_KEY to your backend/.env file.'
+      });
+    }
+
+    // Process context to be readable for the AI
+    let contextString = 'No specific recipe context provided.';
+    if (recipeContext) {
+      const { title, ingredients, directions } = recipeContext;
+      const ingredientList = Array.isArray(ingredients) ? ingredients.map(i => i.name || i).join(', ') : ingredients;
+      const stepList = Array.isArray(directions) ? directions.join(' ') : directions;
+
+      contextString = `
+        Recipe Name: ${title || 'Unknown'}
+        Ingredients: ${ingredientList || 'Unknown'}
+        Instructions: ${stepList || 'Unknown'}
+      `;
+    }
+
+    const systemPrompt = `You are Claudia, a highly experienced, Michelin-star culinary AI Sous-Chef. 
+You are currently helping a user who is looking at the following recipe:
+<recipe_context>
+${contextString}
+</recipe_context>
+
+Guidelines:
+1. Provide extremely practical, accurate, and culinary sound advice.
+2. Keep your answers concise, friendly, and formatted in clean markdown. 
+3. If they ask for a substitution, give exact measurements if possible.
+4. If they ask how to make it vegan/gluten-free, provide the specific substitutions for the ingredients listed.
+5. Do not include introductory filler like "Sure, I can help with that." Just answer the question directly.`;
+
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: query }
+      ],
+      temperature: 0.7,
+      max_tokens: 500,
+    });
+
+    const aiMessage = completion.choices[0]?.message?.content || 'I am sorry, I am having trouble thinking right now.';
+
+    res.json({
+      success: true,
+      data: {
+        response: aiMessage
+      }
+    });
+
+  } catch (error) {
+    console.error('AI Sous-Chef Error:', error);
+    res.status(500).json({
+      success: false,
+      message: error.message || 'An error occurred while communicating with the AI Sous-Chef.'
+    });
+  }
+});
+
 
 // Start server
 app.listen(PORT, () => {

@@ -5,7 +5,6 @@ import { RecipeCard, Recipe } from './components/RecipeCard';
 import { RecipeDrawer } from './components/RecipeDrawer';
 import { KitchenStats } from './components/KitchenStats';
 import { FloatingActionButton } from './components/FloatingActionButton';
-import { RecipeFilters } from './components/RecipeFilters';
 import { Moon, Sun, Menu, X, Loader2 } from 'lucide-react';
 import recipeAPI from './services/api';
 
@@ -18,13 +17,6 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Filter States
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeCuisine, setActiveCuisine] = useState<string | null>(null);
-  const [activeDifficulty, setActiveDifficulty] = useState<string | null>(null);
-  const [availableCuisines, setAvailableCuisines] = useState<string[]>([]);
-  const availableDifficulties = ['Easy', 'Medium', 'Hard'];
-
   // Get responsive column count
   const getColumnCount = () => {
     if (window.innerWidth < 640) return 1; // sm
@@ -35,94 +27,26 @@ export default function App() {
 
   const [columnCount, setColumnCount] = useState(getColumnCount());
 
-  // Fetch recipes and filter data from API
+  // Fetch recipes from API
   useEffect(() => {
-    const fetchInitialData = async () => {
+    const fetchRecipes = async () => {
       try {
         setLoading(true);
         setError(null);
-
-        // Fetch recipes and cuisines in parallel
-        const [recipesRes, cuisinesRes] = await Promise.all([
-          recipeAPI.getRecipes(1, 100),
-          recipeAPI.getCuisines()
-        ]);
-
-        if (recipesRes.success && recipesRes.data) {
-          setRecipes(recipesRes.data);
-        }
-
-        if (cuisinesRes.success && cuisinesRes.data) {
-          // Filter out null/empty cuisines
-          setAvailableCuisines(cuisinesRes.data.filter(Boolean));
+        const response = await recipeAPI.getRecipes(1, 100); // Load first 100 recipes
+        if (response.success && response.data) {
+          setRecipes(response.data);
         }
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load data');
-        console.error('Error fetching initial data:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load recipes');
+        console.error('Error fetching recipes:', err);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchInitialData();
+    fetchRecipes();
   }, []);
-
-  // Handle Filtering and Searching
-  useEffect(() => {
-    const fetchFilteredRecipes = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-
-        let result;
-
-        if (searchQuery) {
-          result = await recipeAPI.searchRecipes(searchQuery);
-        } else if (activeCuisine) {
-          result = await recipeAPI.getRecipesByCuisine(activeCuisine);
-        } else if (activeDifficulty) {
-          result = await recipeAPI.getRecipesByDifficulty(activeDifficulty);
-        } else {
-          // Load default if no filters
-          result = await recipeAPI.getRecipes(1, 100);
-        }
-
-        if (result.success && result.data) {
-          // If we have multiple filters active, we do client-side filtering on the returned list 
-          // because the API endpoints currently only support one filter type at a time
-          let filteredData = result.data;
-
-          if (!searchQuery && activeCuisine && activeDifficulty) {
-            filteredData = filteredData.filter((r: Recipe) => r.difficulty === activeDifficulty);
-          }
-
-          setRecipes(filteredData);
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Filter fetch failed');
-        console.error('Error fetching filtered recipes:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    // Don't run on initial mount to avoid double fetching
-    if (searchQuery !== '' || activeCuisine !== null || activeDifficulty !== null) {
-      fetchFilteredRecipes();
-    } else {
-      // Re-fetch default if all filters cleared
-      const fetchDefault = async () => {
-        setLoading(true);
-        try {
-          const res = await recipeAPI.getRecipes(1, 100);
-          if (res.success && res.data) setRecipes(res.data);
-        } catch (e) { }
-        setLoading(false);
-      };
-      // Only if not initial load
-      if (!loading && recipes.length < 100) fetchDefault();
-    }
-  }, [searchQuery, activeCuisine, activeDifficulty]);
 
   // Handle window resize
   useEffect(() => {
@@ -203,15 +127,6 @@ export default function App() {
           <div className="mb-6">
             <KitchenStats />
           </div>
-
-          {/* Search & Filters */}
-          <RecipeFilters
-            onSearch={setSearchQuery}
-            onFilterCuisine={setActiveCuisine}
-            onFilterDifficulty={setActiveDifficulty}
-            cuisines={availableCuisines}
-            difficulties={availableDifficulties}
-          />
 
           {/* Loading State */}
           {loading && (

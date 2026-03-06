@@ -27,13 +27,19 @@ try {
       const seedMatch = r.id ? r.id.match(/\d+/) : null;
       const seed = seedMatch ? parseInt(seedMatch[0]) : Math.floor(Math.random() * 1000);
 
+      // Validate imageUrl - only use if it's a valid HTTP(S) URL
+      let validImageUrl = null;
+      if (r.imageUrl && typeof r.imageUrl === 'string' && (r.imageUrl.startsWith('http://') || r.imageUrl.startsWith('https://'))) {
+        validImageUrl = r.imageUrl;
+      }
+
       return {
         ...r,
         name: r.title || 'Unknown Recipe',
         // Use food-specific placeholder images instead of generic picsum
-        image: r.imageUrl || `https://loremflickr.com/800/600/food,recipe?lock=${seed}`,
+        image: validImageUrl || `https://loremflickr.com/800/600/food,recipe?lock=${seed}`,
         // Format properties for UI
-        prepTime: r.prepTime ? `${r.prepTime} mins` : '20 mins',
+        prepTime: (r.prepTime && r.prepTime > 0) ? `${r.prepTime} mins` : '20 mins',
         cuisine: r.cuisine || 'International'
       };
     });

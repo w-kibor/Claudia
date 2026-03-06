@@ -63,13 +63,21 @@ export default function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Handle Theme Synchronization
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDark]);
+
   const toggleTheme = () => {
     setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
   };
 
   return (
-    <div className={`h-screen flex flex-col md:flex-row ${isDark ? 'dark' : ''}`}>
+    <div className={`h-screen flex flex-col md:flex-row bg-background text-foreground ${isDark ? 'dark' : ''}`}>
       {/* Mobile Sidebar Backdrop */}
       {isMobile && isMobileSidebarOpen && (
         <div

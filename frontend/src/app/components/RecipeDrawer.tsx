@@ -40,7 +40,7 @@ export function RecipeDrawer({ recipe, isOpen, onClose }: RecipeDrawerProps) {
   // Transform ingredients array to the format needed for the UI
   const ingredients = useMemo(() => {
     if (!recipe?.ingredients) return [];
-    return recipe.ingredients.map((ingredient, index) => ({
+    return recipe.ingredients.map((ingredient: any, index: number) => ({
       id: `ing-${index}`,
       name: ingredient,
     }));
@@ -48,12 +48,15 @@ export function RecipeDrawer({ recipe, isOpen, onClose }: RecipeDrawerProps) {
 
   // Transform directions array to the format needed for the UI
   const steps = useMemo(() => {
-    if (!recipe?.directions) return [];
-    return recipe.directions.map((direction, index) => ({
-      id: `step-${index}`,
-      instruction: direction,
-    }));
-  }, [recipe?.directions]);
+    const rawDirections = recipe?.instructions || recipe?.directions;
+    if (!rawDirections) return [];
+    return rawDirections.map((direction: any, index: number) => {
+      return {
+        id: `step-${index}`,
+        instruction: direction,
+      };
+    });
+  }, [recipe?.directions, recipe?.instructions]);
 
   const handleCheckIngredient = (id: string) => {
     setCheckedIngredients(prev => {
@@ -205,7 +208,7 @@ export function RecipeDrawer({ recipe, isOpen, onClose }: RecipeDrawerProps) {
                   <h2 className="text-xl sm:text-2xl mb-4 font-semibold">Instructions</h2>
                   {steps.length > 0 ? (
                     <div className="space-y-4 sm:space-y-6">
-                      {steps.map((step, index) => (
+                      {steps.map((step: any, index: number) => (
                         <div key={step.id} className="flex gap-3 sm:gap-4">
                           <div className="w-8 h-8 rounded-full bg-accent text-accent-foreground flex items-center justify-center flex-shrink-0 font-medium text-sm">
                             {index + 1}

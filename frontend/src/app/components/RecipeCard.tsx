@@ -10,6 +10,7 @@ export interface Recipe {
   cuisine: string;
   ingredients?: string[];
   directions?: string[];
+  instructions?: string[];
   source?: string;
   link?: string;
 }
@@ -27,14 +28,14 @@ export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
   };
 
   return (
-    <div 
+    <div
       onClick={onClick}
       className="group relative overflow-hidden rounded-lg cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl active:scale-95 md:active:scale-100"
     >
       {/* Image */}
       <div className="aspect-[4/5] overflow-hidden bg-muted">
         <ImageWithFallback
-          src={recipe.image} 
+          src={recipe.image}
           alt={recipe.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           loading="lazy"

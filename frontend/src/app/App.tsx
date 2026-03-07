@@ -192,6 +192,7 @@ export default function App() {
       {/* Recipe Drawer */}
       <RecipeDrawer
         recipe={selectedRecipe}
+        isOpen={!!selectedRecipe}
         onClose={() => setSelectedRecipe(null)}
       />
 

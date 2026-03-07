@@ -1,5 +1,5 @@
 import { X, Clock, Users, Flame, Info, Check } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion'; // Changed from 'motion/react' to 'framer-motion' based on common usage and context
+import { motion, AnimatePresence } from 'motion/react';
 import { Recipe } from './RecipeCard';
 import { useState, useMemo, useRef, useEffect } from 'react';
 import * as Checkbox from '@radix-ui/react-checkbox';

@@ -35,8 +35,6 @@ export function RecipeDrawer({ recipe, isOpen, onClose }: RecipeDrawerProps) {
     }
   }, [messages, isThinking]);
 
-  if (!recipe || !isOpen) return null;
-
   // Transform ingredients array to the format needed for the UI
   const ingredients = useMemo(() => {
     if (!recipe?.ingredients) return [];
@@ -72,7 +70,7 @@ export function RecipeDrawer({ recipe, isOpen, onClose }: RecipeDrawerProps) {
 
   const handleChatSubmit = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
-    if (!chatInput.trim() || isThinking) return;
+    if (!chatInput.trim() || isThinking || !recipe) return;
 
     const userMsg = chatInput.trim();
     setChatInput('');
@@ -92,13 +90,13 @@ export function RecipeDrawer({ recipe, isOpen, onClose }: RecipeDrawerProps) {
       if (result.success && result.data?.response) {
         setMessages(prev => [...prev, { role: 'assistant', content: result.data.response }]);
       } else {
-        setMessages(prev => [...prev, { role: 'assistant', content: 'Sorry, I encountered an issue getting that answer.' }]);
+        setMessages(prev => [...prev, { role: 'assistant', content: result.message || 'Sorry, I encountered an issue getting that answer.' }]);
       }
     } catch (error) {
       const errMessage = error instanceof Error ? error.message : 'I had trouble connecting to my cloud kitchen.';
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: `**Error:** ${errMessage}\n\n*Did you forget to add your OpenAI API key to backend/.env?*`
+        content: `**Error:** ${errMessage}\n\n*Did you forget to add your GEMINI_API_KEY to backend/.env?*`
       }]);
     } finally {
       setIsThinking(false);

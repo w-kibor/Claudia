@@ -3,7 +3,7 @@ import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import OpenAI from 'openai';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -14,10 +14,8 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Initialize OpenAI client (requires OPENAI_API_KEY in .env)
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY || 'dummy_key', // Fallback for initialization, will fail on use if not real
-});
+// Initialize Gemini client (requires GEMINI_API_KEY in .env)
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'dummy_key');
 
 // Middleware
 app.use(cors());
@@ -234,10 +232,10 @@ app.post('/api/ai/sous-chef', async (req, res) => {
     }
 
     // Check if the API key is actually set
-    if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'dummy_key') {
+    if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY === 'dummy_key') {
       return res.status(500).json({
         success: false,
-        message: 'OpenAI API key is missing. Please add OPENAI_API_KEY to your backend/.env file.'
+        message: 'Gemini API key is missing. Please add GEMINI_API_KEY to your backend/.env file.'
       });
     }
 
@@ -268,17 +266,13 @@ Guidelines:
 4. If they ask how to make it vegan/gluten-free, provide the specific substitutions for the ingredients listed.
 5. Do not include introductory filler like "Sure, I can help with that." Just answer the question directly.`;
 
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [
-        { role: 'system', content: systemPrompt },
-        { role: 'user', content: query }
-      ],
-      temperature: 0.7,
-      max_tokens: 500,
+    const model = genAI.getGenerativeModel({
+      model: "gemini-2.5-flash",
+      systemInstruction: systemPrompt,
     });
 
-    const aiMessage = completion.choices[0]?.message?.content || 'I am sorry, I am having trouble thinking right now.';
+    const result = await model.generateContent(query);
+    const aiMessage = result.response.text() || 'I am sorry, I am having trouble thinking right now.';
 
     res.json({
       success: true,

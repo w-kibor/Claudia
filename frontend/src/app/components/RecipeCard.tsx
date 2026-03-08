@@ -1,4 +1,5 @@
 import { Clock, TrendingUp } from 'lucide-react';
+import { motion } from 'motion/react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 export interface Recipe {
@@ -28,9 +29,15 @@ export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className="group relative overflow-hidden rounded-lg cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl active:scale-95 md:active:scale-100"
+      className="group relative overflow-hidden rounded-lg cursor-pointer transition-shadow duration-300 hover:shadow-2xl"
     >
       {/* Image */}
       <div className="aspect-[4/5] overflow-hidden bg-muted">
@@ -68,6 +75,6 @@ export function RecipeCard({ recipe, onClick }: RecipeCardProps) {
       <button className="absolute top-3 right-3 w-8 h-8 rounded-full bg-accent text-accent-foreground flex items-center justify-center opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 hover:scale-110 shadow-lg active:scale-95 md:active:scale-100">
         <TrendingUp className="w-4 h-4" />
       </button>
-    </div>
+    </motion.div>
   );
 }

@@ -1,4 +1,5 @@
 import { Package, ShoppingCart } from 'lucide-react';
+import { motion } from 'motion/react';
 
 export function KitchenStats() {
   const stats = {
@@ -10,9 +11,14 @@ export function KitchenStats() {
   const percentage = (stats.onHand / stats.total) * 100;
 
   return (
-    <div className="bg-card border border-border rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm">
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="bg-card border border-border rounded-lg md:rounded-xl p-4 md:p-6 shadow-sm"
+    >
       <h3 className="text-xs md:text-sm text-muted-foreground mb-4">Kitchen Inventory</h3>
-      
+
       <div className="grid grid-cols-2 gap-3 md:gap-4 mb-4">
         <div className="flex items-center gap-2 md:gap-3">
           <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
@@ -23,7 +29,7 @@ export function KitchenStats() {
             <div className="text-xs text-muted-foreground">On Hand</div>
           </div>
         </div>
-        
+
         <div className="flex items-center gap-2 md:gap-3">
           <div className="w-10 h-10 rounded-lg bg-destructive/10 flex items-center justify-center flex-shrink-0">
             <ShoppingCart className="w-5 h-5 text-destructive" />
@@ -42,12 +48,14 @@ export function KitchenStats() {
           <span>{Math.round(percentage)}%</span>
         </div>
         <div className="h-2 bg-muted rounded-full overflow-hidden">
-          <div 
-            className="h-full bg-accent transition-all duration-500"
-            style={{ width: `${percentage}%` }}
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: `${percentage}%` }}
+            transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
+            className="h-full bg-accent"
           />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

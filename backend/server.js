@@ -3,7 +3,6 @@ import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import delay from 'express-delay';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import dotenv from 'dotenv';
 
@@ -21,8 +20,6 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'dummy_key');
 // Middleware
 app.use(cors());
 app.use(express.json());
-// Add a 2s delay specifically to the main recipes endpoint for testing loaders
-app.use('/api/recipes', delay(2000));
 
 // Load recipes data
 let recipes = [];

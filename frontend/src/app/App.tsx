@@ -7,6 +7,7 @@ import { KitchenStats } from './components/KitchenStats';
 import { FloatingActionButton } from './components/FloatingActionButton';
 import { Moon, Sun, Menu, X, Loader2 } from 'lucide-react';
 import recipeAPI from './services/api';
+import { RecipeCardSkeleton } from './components/RecipeCardSkeleton';
 
 export default function App() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -139,9 +140,12 @@ export default function App() {
           {/* Loading State */}
           {loading && (
             <div className="flex items-center justify-center min-h-[400px]">
-              <div className="text-center">
-                <Loader2 className="w-8 h-8 animate-spin mx-auto mb-3 text-primary" />
-                <p className="text-sm text-muted-foreground">Loading recipes...</p>
+              <div className="text-center w-full">
+                <Masonry columnsCount={columnCount} gutter="1.5rem">
+                  {Array.from({ length: columnCount === 1 ? 4 : 8 }).map((_, i) => (
+                    <RecipeCardSkeleton key={`skeleton-${i}`} />
+                  ))}
+                </Masonry>
               </div>
             </div>
           )}

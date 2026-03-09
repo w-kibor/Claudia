@@ -34,9 +34,9 @@ try {
       const seedMatch = r.id ? r.id.match(/\d+/) : null;
       const seed = seedMatch ? parseInt(seedMatch[0]) : Math.floor(Math.random() * 1000);
 
-      // Validate imageUrl - only use if it's a valid HTTP(S) URL
+      // Validate imageUrl - only use if it's a valid HTTP(S) URL or local path
       let validImageUrl = null;
-      if (r.imageUrl && typeof r.imageUrl === 'string' && (r.imageUrl.startsWith('http://') || r.imageUrl.startsWith('https://'))) {
+      if (r.imageUrl && typeof r.imageUrl === 'string' && (r.imageUrl.startsWith('http://') || r.imageUrl.startsWith('https://') || r.imageUrl.startsWith('/'))) {
         validImageUrl = r.imageUrl;
       }
 

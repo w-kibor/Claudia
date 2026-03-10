@@ -29,14 +29,20 @@ try {
   const parsedData = JSON.parse(rawData);
 
   if (parsedData && parsedData.recipes) {
-    recipes = parsedData.recipes.map(r => {
+    recipes = parsedData.recipes.map((r) => {
       // Extract a numeric seed from the ID for consistent images
       const seedMatch = r.id ? r.id.match(/\d+/) : null;
       const seed = seedMatch ? parseInt(seedMatch[0]) : Math.floor(Math.random() * 1000);
 
       // Validate imageUrl - only use if it's a valid HTTP(S) URL or local path
       let validImageUrl = null;
-      if (r.imageUrl && typeof r.imageUrl === 'string' && (r.imageUrl.startsWith('http://') || r.imageUrl.startsWith('https://') || r.imageUrl.startsWith('/'))) {
+      if (
+        r.imageUrl &&
+        typeof r.imageUrl === 'string' &&
+        (r.imageUrl.startsWith('http://') ||
+          r.imageUrl.startsWith('https://') ||
+          r.imageUrl.startsWith('/'))
+      ) {
         validImageUrl = r.imageUrl;
       }
 
@@ -46,8 +52,8 @@ try {
         // Use food-specific placeholder images instead of generic picsum
         image: validImageUrl || `https://loremflickr.com/800/600/food,recipe?lock=${seed}`,
         // Format properties for UI
-        prepTime: (r.prepTime && r.prepTime > 0) ? `${r.prepTime} mins` : '20 mins',
-        cuisine: r.cuisine || 'International'
+        prepTime: r.prepTime && r.prepTime > 0 ? `${r.prepTime} mins` : '20 mins',
+        cuisine: r.cuisine || 'International',
       };
     });
     console.log(`✅ Loaded ${recipes.length} recipes from small dataset with mapped food images`);
@@ -68,8 +74,8 @@ app.get('/', (req, res) => {
       recipeById: '/api/recipes/:id',
       search: '/api/recipes/search?q=query',
       cuisines: '/api/cuisines',
-      stats: '/api/stats'
-    }
+      stats: '/api/stats',
+    },
   });
 });
 
@@ -90,8 +96,8 @@ app.get('/api/recipes', (req, res) => {
         currentPage: page,
         totalPages: Math.ceil(recipes.length / limit),
         totalRecipes: recipes.length,
-        recipesPerPage: limit
-      }
+        recipesPerPage: limit,
+      },
     });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -101,18 +107,18 @@ app.get('/api/recipes', (req, res) => {
 // Get recipe by ID
 app.get('/api/recipes/:id', (req, res) => {
   try {
-    const recipe = recipes.find(r => r.id === req.params.id);
+    const recipe = recipes.find((r) => r.id === req.params.id);
 
     if (!recipe) {
       return res.status(404).json({
         success: false,
-        error: 'Recipe not found'
+        error: 'Recipe not found',
       });
     }
 
     res.json({
       success: true,
-      data: recipe
+      data: recipe,
     });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -127,20 +133,21 @@ app.get('/api/recipes/search', (req, res) => {
     if (!query) {
       return res.status(400).json({
         success: false,
-        error: 'Search query is required'
+        error: 'Search query is required',
       });
     }
 
-    const results = recipes.filter(recipe =>
-      recipe.name.toLowerCase().includes(query) ||
-      recipe.cuisine.toLowerCase().includes(query) ||
-      recipe.ingredients?.some(ing => ing.toLowerCase().includes(query))
+    const results = recipes.filter(
+      (recipe) =>
+        recipe.name.toLowerCase().includes(query) ||
+        recipe.cuisine.toLowerCase().includes(query) ||
+        recipe.ingredients?.some((ing) => ing.toLowerCase().includes(query)),
     );
 
     res.json({
       success: true,
       data: results,
-      count: results.length
+      count: results.length,
     });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -150,11 +157,11 @@ app.get('/api/recipes/search', (req, res) => {
 // Get all unique cuisines
 app.get('/api/cuisines', (req, res) => {
   try {
-    const cuisines = [...new Set(recipes.map(r => r.cuisine))].sort();
+    const cuisines = [...new Set(recipes.map((r) => r.cuisine))].sort();
 
     res.json({
       success: true,
-      data: cuisines
+      data: cuisines,
     });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -165,14 +172,12 @@ app.get('/api/cuisines', (req, res) => {
 app.get('/api/recipes/cuisine/:cuisine', (req, res) => {
   try {
     const cuisine = req.params.cuisine;
-    const filtered = recipes.filter(r =>
-      r.cuisine.toLowerCase() === cuisine.toLowerCase()
-    );
+    const filtered = recipes.filter((r) => r.cuisine.toLowerCase() === cuisine.toLowerCase());
 
     res.json({
       success: true,
       data: filtered,
-      count: filtered.length
+      count: filtered.length,
     });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -183,14 +188,12 @@ app.get('/api/recipes/cuisine/:cuisine', (req, res) => {
 app.get('/api/recipes/difficulty/:level', (req, res) => {
   try {
     const level = req.params.level;
-    const filtered = recipes.filter(r =>
-      r.difficulty.toLowerCase() === level.toLowerCase()
-    );
+    const filtered = recipes.filter((r) => r.difficulty.toLowerCase() === level.toLowerCase());
 
     res.json({
       success: true,
       data: filtered,
-      count: filtered.length
+      count: filtered.length,
     });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -203,7 +206,7 @@ app.get('/api/stats', (req, res) => {
     const cuisineCount = {};
     const difficultyCount = {};
 
-    recipes.forEach(recipe => {
+    recipes.forEach((recipe) => {
       cuisineCount[recipe.cuisine] = (cuisineCount[recipe.cuisine] || 0) + 1;
       difficultyCount[recipe.difficulty] = (difficultyCount[recipe.difficulty] || 0) + 1;
     });
@@ -213,8 +216,8 @@ app.get('/api/stats', (req, res) => {
       data: {
         totalRecipes: recipes.length,
         cuisines: cuisineCount,
-        difficulties: difficultyCount
-      }
+        difficulties: difficultyCount,
+      },
     });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -235,7 +238,7 @@ app.post('/api/ai/sous-chef', async (req, res) => {
     if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY === 'dummy_key') {
       return res.status(500).json({
         success: false,
-        message: 'Gemini API key is missing. Please add GEMINI_API_KEY to your backend/.env file.'
+        message: 'Gemini API key is missing. Please add GEMINI_API_KEY to your backend/.env file.',
       });
     }
 
@@ -243,7 +246,9 @@ app.post('/api/ai/sous-chef', async (req, res) => {
     let contextString = 'No specific recipe context provided.';
     if (recipeContext) {
       const { title, ingredients, directions } = recipeContext;
-      const ingredientList = Array.isArray(ingredients) ? ingredients.map(i => i.name || i).join(', ') : ingredients;
+      const ingredientList = Array.isArray(ingredients)
+        ? ingredients.map((i) => i.name || i).join(', ')
+        : ingredients;
       const stepList = Array.isArray(directions) ? directions.join(' ') : directions;
 
       contextString = `
@@ -267,29 +272,28 @@ Guidelines:
 5. Do not include introductory filler like "Sure, I can help with that." Just answer the question directly.`;
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash",
+      model: 'gemini-2.5-flash',
       systemInstruction: systemPrompt,
     });
 
     const result = await model.generateContent(query);
-    const aiMessage = result.response.text() || 'I am sorry, I am having trouble thinking right now.';
+    const aiMessage =
+      result.response.text() || 'I am sorry, I am having trouble thinking right now.';
 
     res.json({
       success: true,
       data: {
-        response: aiMessage
-      }
+        response: aiMessage,
+      },
     });
-
   } catch (error) {
     console.error('AI Sous-Chef Error:', error);
     res.status(500).json({
       success: false,
-      message: error.message || 'An error occurred while communicating with the AI Sous-Chef.'
+      message: error.message || 'An error occurred while communicating with the AI Sous-Chef.',
     });
   }
 });
-
 
 // Start server
 app.listen(PORT, () => {

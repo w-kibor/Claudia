@@ -151,13 +151,7 @@
       "id": "15125",
       "title": "Basic Mandazi \n(East African Doughnuts, Basic)",
       "about": "You will find this recipe in any home across Kenya. Preferred for its simplicity, it serves the entire family and\na choice item for breakfast.",
-      "ingredients": [
-        "all-purpose wheat flour",
-        "baking powder",
-        "sugar",
-        "cooking oil",
-        "water"
-      ],
+      "ingredients": ["all-purpose wheat flour", "baking powder", "sugar", "cooking oil", "water"],
       "directions": [
         "?  Put the wheat flour into a bowl, add baking powder",
         "and sugar.",
@@ -374,14 +368,7 @@
       "id": "15027",
       "title": "Pancakes\n(Chapati za Maji)",
       "about": "This is a popular recipe among urban dwellers but also common across the country. It is loved for its sim\u0002plicity and ease of preparation as a breakfast dish. Pancakes are eaten by the entire family.",
-      "ingredients": [
-        "wheat flour",
-        "eggs",
-        "cow milk",
-        "sugar",
-        "water",
-        "cooking oil"
-      ],
+      "ingredients": ["wheat flour", "eggs", "cow milk", "sugar", "water", "cooking oil"],
       "directions": [
         "Preparation 20 minutes | Cooking 30 minutes |",
         "Makes 9",
@@ -536,14 +523,7 @@
       "id": "15135",
       "title": "Mkate Kuta(Ngumu)",
       "about": "This is a typical traditional recipe among the Kenyan Nubian?s. Mainly served as a breakfast snack, Mkate\nKuta was traditionally served on the wedding day to escort the bride. It is common to this day among the\nNubian?s as a snack for the entire family.",
-      "ingredients": [
-        "wheat flour",
-        "wheat flour",
-        "sugar",
-        "cooking oil",
-        "cardamom",
-        "water"
-      ],
+      "ingredients": ["wheat flour", "wheat flour", "sugar", "cooking oil", "cardamom", "water"],
       "directions": [
         "Preparation 20 minutes | Cooking 1 hour | Serves 4",
         "?  Put the all-purpose flour and the self-rising flour",
@@ -585,12 +565,7 @@
       "id": "15028",
       "title": "Tosti Mayai \n(Egg Toast)",
       "about": "Egg on toast is a popular recipe used to enrich bread among urban dwellers. It is prepared by simply\ndipping bread slices on beaten egg, then frying on lightly oiled pan. Mainly serves as a breakfast item and\nis eaten by the entire family",
-      "ingredients": [
-        "eggs",
-        "salt",
-        "cooking oil",
-        "bread"
-      ],
+      "ingredients": ["eggs", "salt", "cooking oil", "bread"],
       "directions": [
         "Preparation 10 minutes | Cooking 10 minutes |",
         "Makes 4",
@@ -621,11 +596,7 @@
       "id": "15122",
       "title": "Oatmeal",
       "about": "This quick to prepare recipe, is eaten mainly for breakfast and is common among urban dwellers. It is\neaten by the entire family.",
-      "ingredients": [
-        "oats",
-        "water",
-        "salt"
-      ],
+      "ingredients": ["oats", "water", "salt"],
       "directions": [
         "Preparation 5 minutes | Cooking 5 minutes | Serves",
         "4",
@@ -652,12 +623,7 @@
       "id": "15081",
       "title": "Chai ya Maziwa\n(Mixed Tea)",
       "about": "This is the most popular non-alcoholic beverage in Kenya. Enriched with fresh milk, it is drunk as a break\u0002fast beverage and enjoyed by the entire family",
-      "ingredients": [
-        "water",
-        "cow milk",
-        "sugar",
-        "tea leaves"
-      ],
+      "ingredients": ["water", "cow milk", "sugar", "tea leaves"],
       "directions": [
         "Preparation 5 minutes | Cooking 1 hour |",
         "Makes 17 cups",
@@ -685,12 +651,7 @@
       "id": "15064",
       "title": "Vimumunya vya Chumvi\n(Pumpkin & Coconut Milk)",
       "about": "?Vimumunya? is a Swahili word that connotes the way this dish is eaten. It is a pumpkin meal that is com\u0002mon among communities at the coastal region particularly among the Mijikenda community. It is served as\na main course among the Mijikenda and as a dessert among the Bajuni community",
-      "ingredients": [
-        "Pumpkin",
-        "salt",
-        "coconut milk",
-        "water"
-      ],
+      "ingredients": ["Pumpkin", "salt", "coconut milk", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 25 minutes |",
         "Serves 4",
@@ -718,11 +679,7 @@
       "id": "15001",
       "title": "Maize Porridge\n(Uji wa Mahindi)",
       "about": "Whole maize flour has been used for many years by many communities in Kenya to prepare porridge.\nEnriched with milk, it also serves as an infant dish.",
-      "ingredients": [
-        "whole maize flour",
-        "water",
-        "cow milk"
-      ],
+      "ingredients": ["whole maize flour", "water", "cow milk"],
       "directions": [
         "Preparation 5 minutes | Cooking 25 minutes | Serves 4",
         "?  Put 5 cups of the water into the cooking pot, cover and",
@@ -752,13 +709,7 @@
       "id": "15002",
       "title": "Sorghum, Finger \nMillet, Maize Flour \nPorridge",
       "about": "This recipe is made from a mixture of 3 grains ground together into flour. It is rich in nutrients and is en\u0002riched with milk. Popular among many households in Kenya as a family dish, the porridge, serves infants/\nchildren",
-      "ingredients": [
-        "sorghum flour",
-        "finger millet flour",
-        "maize flou",
-        "cow milk",
-        "water"
-      ],
+      "ingredients": ["sorghum flour", "finger millet flour", "maize flou", "cow milk", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 30 minutes | Serves 4",
         "?  Mix the whole maize flour, sorghum flour and finger",
@@ -790,11 +741,7 @@
       "id": "15013",
       "title": "Cassava Porridge \n(Uji wa Muhogo)",
       "about": "The ancient cassava has been a traditional staple in most Kenyan communities, particularly Western and\nCoastal regions. Dried and ground into fine flour, cassava makes refreshing porridge for the entire family",
-      "ingredients": [
-        "cassava flour",
-        "sugar",
-        "water"
-      ],
+      "ingredients": ["cassava flour", "sugar", "water"],
       "directions": [
         "Preparation 2 minutes | Cooking 20 minutes |",
         "Serves 6",
@@ -820,11 +767,7 @@
       "id": "15014",
       "title": "Finger Millet Porridge\n(Uji wa Wimbi)",
       "about": "This porridge is made from the tiny finger millet grain best known for its characteristic brown colour and\ngood source of fibre. It is common in Western and Eastern parts of Kenya. This porridge is prepared from\ncarefully cleaned and dried finger millet grains. It is commonly enriched with milk or sugar and serves\nchildren and adults alike",
-      "ingredients": [
-        "finger millet flour",
-        "sugar",
-        "water"
-      ],
+      "ingredients": ["finger millet flour", "sugar", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 20 minutes | Serves 4",
         "?  Boil 5 cups of water in a pot.",
@@ -851,11 +794,7 @@
       "id": "15015",
       "title": "Bulrush Millet Porridge \n(Uji wa Mawele)",
       "about": "This recipe is common among the Bantu communities particularly in Eastern part of Kenya. Bulrush millet\nis a rich grain. Its porridge was traditionally a special treat during passage rites ceremonies for young\nboys. In modern times, this porridge is consumed by both children and adults.",
-      "ingredients": [
-        "bulrush millet flour",
-        "sugar",
-        "water"
-      ],
+      "ingredients": ["bulrush millet flour", "sugar", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 25 minutes |",
         "Serves 4",
@@ -883,13 +822,7 @@
       "id": "15016",
       "title": "Rice Flour Porridge\n(Uji wa Mchele)",
       "about": "Rice flour porridge is a native infant porridge among the Swahilis in Kenya. It is wonderfully flavoured and\nenriched with coconut milk.",
-      "ingredients": [
-        "rice flour",
-        "sugar",
-        "cardamom powder",
-        "coconut milk",
-        "water"
-      ],
+      "ingredients": ["rice flour", "sugar", "cardamom powder", "coconut milk", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 20 minutes |",
         "Serves 6",
@@ -955,12 +888,7 @@
       "id": "15119",
       "title": "Finger Millet &\n Sorghum Porridge",
       "about": "A mixture of sorghum and finger millet grains provides a classic blend of nutrients in the porridge. Some\u0002times this porridge is enriched with sugar and milk. An excellent complementary food option in most com\u0002munities in Kenya.",
-      "ingredients": [
-        "finger millet flour",
-        "sorghum flour",
-        "milk",
-        "water"
-      ],
+      "ingredients": ["finger millet flour", "sorghum flour", "milk", "water"],
       "directions": [
         "Preparation 3-5 minutes | Cooking 15 minutes | Serves 4",
         "?  Boil 3 cups of the water in a pot.",
@@ -987,12 +915,7 @@
       "id": "15123",
       "title": "Oat Porridge\n(Uji wa Shayiri)",
       "about": "Oat porridge provides a high satiety value to the family. Mainly an urban dish, it is growing in popularity as\nan infant dish but also serves as a breakfast option for adults.",
-      "ingredients": [
-        "oatmeal flour",
-        "sugar",
-        "water",
-        "cow milk"
-      ],
+      "ingredients": ["oatmeal flour", "sugar", "water", "cow milk"],
       "directions": [
         "Preparation 5 minutes | Cooking 10 minutes | Serves 4",
         "?  Put 1 1/2 cups of water into a cup, add oat flour and stir to",
@@ -1061,12 +984,7 @@
       "id": "15136",
       "title": "Wheat Flour Porridge\n(Uji wa Ngano)",
       "about": "The Nubian community in Kenya consider this recipe special to infant feeding. It is enriched with peanut\nbutter and sugar to give a smooth sweet taste.",
-      "ingredients": [
-        "wheat flou",
-        "water",
-        "sugar",
-        "peanut butter"
-      ],
+      "ingredients": ["wheat flou", "water", "sugar", "peanut butter"],
       "directions": [
         "Preparation 5 minutes | Cooking 15 minutes |",
         "Serves 4",
@@ -1207,14 +1125,7 @@
       "id": "15037",
       "title": "Mseto wa Ndengu\n(Rice with Green Grams)",
       "about": "This recipe is named in Swahili ?Mseto wa Ndengu? meaning a mix of green grams and rice. It is uniquely\nprepared using freshly squeezed coconut milk. Very popular in the Kenyan coastal region, it is served to\ninfants and adults alike as a main meal during lunch or dinner. In other communities, this recipe is pre\u0002pared without coconut milk.",
-      "ingredients": [
-        "white rice",
-        "green grams",
-        "coconut milk",
-        "onion",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["white rice", "green grams", "coconut milk", "onion", "salt", "water"],
       "directions": [
         "Preparation 15 minutes | Cooking 1 hour 30 minutes |",
         "Serves 6",
@@ -1285,12 +1196,7 @@
       "id": "15074",
       "title": "Wali wa Kuchemshwa\n(Boiled Rice)",
       "about": "One of the simplest ways that rice is cooked in Kenya is by boiling. This recipe is common in different\ncommunities in Kenya. It is eaten by the entire family often accompanied by a protein rich stew and vege\u0002tables",
-      "ingredients": [
-        "white rice",
-        "salt",
-        "cooking oil",
-        "water"
-      ],
+      "ingredients": ["white rice", "salt", "cooking oil", "water"],
       "directions": [
         "Preparation time 5 minutes | Cooking 40 minutes",
         "? Serves 4",
@@ -1321,13 +1227,7 @@
       "id": "15075",
       "title": "Wali wa Yasmin\n(Onion Fried Rice)",
       "about": "Commonly known as Wali wa Yasmin, this recipe is typical to the Swahili community. It is mainly prepared\nduring special occasions. It is usually served as a main course accompanied by a variety of stews or broths.\nIt is enjoyed by the whole family.",
-      "ingredients": [
-        "white rice",
-        "onions",
-        "cooking oil",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["white rice", "onions", "cooking oil", "salt", "water"],
       "directions": [
         "Preparation 35 minutes | Cooking 45 minutes |",
         "Serves 4",
@@ -1406,11 +1306,7 @@
       "id": "15129",
       "title": "Steamed Rice\n(Wali wa Mvuke)",
       "about": "The special step of soaking rice in this recipe gives a deliciously fluffy dish. Steamed rice is usually accom\u0002panied by a variety of stews including legume based stews. It is common among Kenyan Indians and the\nSwahilis. Usually eaten by the entire family and can serve as part of infant feeding",
-      "ingredients": [
-        "white rice",
-        "water",
-        "salt"
-      ],
+      "ingredients": ["white rice", "water", "salt"],
       "directions": [
         "Preparation 35 minutes | Cooking 30 minutes | Serves 4",
         "?  Sort and soak the rice in 2 cups of water for 30 minutes.",
@@ -1438,13 +1334,7 @@
       "id": "15116",
       "title": "Mcheleng\n(Rice with milk)",
       "about": "This creamy smooth dish is unique to the Kalenjin community and is commonly known as ?mcheleng?. It is\nmade with milk and milk cream. Loved for its convenience, it is enjoyed by the entire family but mainly a\ndelicacy for children. It is eaten mainly as a lunch or dinner dish often accompanied by a meat or legume\nstews.",
-      "ingredients": [
-        "white rice",
-        "water",
-        "milk",
-        "milk cream, cow",
-        "salt"
-      ],
+      "ingredients": ["white rice", "water", "milk", "milk cream, cow", "salt"],
       "directions": [
         "Preparation 10 minutes | Cooking 30 minutes | Serves 4",
         "?  Put milk, all the water and cream into a cooking pot.",
@@ -1470,13 +1360,7 @@
       "id": "15057",
       "title": "Mukimo\n(Fresh Maize, Potato & Pumpkin Leaves)",
       "about": "This is a common dish among the Kikuyu, Meru and Embu communities. Often eaten for lunch or dinner, it\ncan be served with meat stew. This dish is served as a main meal to the whole family",
-      "ingredients": [
-        "potatoes",
-        "pumpkin leaves",
-        "green maize",
-        "water",
-        "salt"
-      ],
+      "ingredients": ["potatoes", "pumpkin leaves", "green maize", "water", "salt"],
       "directions": [
         "Preparation 15 minutes | Cooking 1 hour 15 min\u0002utes | Serves 4",
         "?  Peel the potatoes and wash.",
@@ -1544,14 +1428,7 @@
       "id": "15059",
       "title": "Mukimo wa Njahi\n(Black Beans, Green Bananas & Potatoes)",
       "about": "This is a delicacy among the Kikuyu community particularly in Nyeri. Commonly referred to as ?Mukimo\nwa Njahi?, this dish was traditionally prepared for lactating mothers and during occasions like dowry cere\u0002monies. In modern times it remains important as a family dish mainly served during lunch or dinner.",
-      "ingredients": [
-        "potatoes",
-        "green bananas",
-        "njahi,",
-        "dolichos lablab,",
-        "water",
-        "salt"
-      ],
+      "ingredients": ["potatoes", "green bananas", "njahi,", "dolichos lablab,", "water", "salt"],
       "directions": [
         "Preparation 20 minutes | Cooking 4 hours | Serves 4",
         "?  Boil 2 1/2 cups of njahi (dolichos lablab) in 21 cups of",
@@ -1580,13 +1457,7 @@
       "id": "15062",
       "title": "Mukimo wa Njahi \n(Raw & Ripe Bananas)",
       "about": "This sweet Mukimo wa Njahi is prepared using ripe banana typical among the Kikuyu community. It was\nprepared mainly for lactating mothers and during dowry ceremonies. To date, this remains an important\nrecipe among the Kikuyu community and is served mainly during Lunch.",
-      "ingredients": [
-        "njahi dolichos lablab",
-        "blackbeans",
-        "unpeeled bananas",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["njahi dolichos lablab", "blackbeans", "unpeeled bananas", "salt", "water"],
       "directions": [
         "Preparation 10 minutes | Cooking 4 hours 30 min\u0002utes | Serves 8",
         "?  Sort the black beans, wash and cook in 23 cups of",
@@ -1617,15 +1488,7 @@
       "id": "15061",
       "title": "Mashed Potatoes\n& Bananas",
       "about": "This recipe is common among the Kisii, Kikuyu and Meru communities due to the abundance of the ba\u0002nanas and potatoes in these communities. Sometimes it serves as an infant dish. When served as a main\nfamily dish, it can be eaten with a variety of stews or just a vegetable dish.",
-      "ingredients": [
-        "potato",
-        "bananas",
-        "onion",
-        "tomato",
-        "cooking fat",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["potato", "bananas", "onion", "tomato", "cooking fat", "salt", "water"],
       "directions": [
         "Preparation 10 minutes | Cooking 45 minutes | Serves 4",
         "?  Peel, wash the potatoes and bananas into separate",
@@ -1661,14 +1524,7 @@
       "id": "15069",
       "title": "Mushenye\n (Green Maize and Sweet Potatoes)",
       "about": "This dish is typical to the Luhya community. It is served as a main dish during lunch or dinner. Traditionally\nit was eaten plain but can be served with. It usually served with tea.",
-      "ingredients": [
-        "beans",
-        "green maize",
-        "sweet potatoes",
-        "salt",
-        "peanut butter",
-        "water"
-      ],
+      "ingredients": ["beans", "green maize", "sweet potatoes", "salt", "peanut butter", "water"],
       "directions": [
         "Preparation 20 minutes | Cooking 4 hours 40 min\u0002utes | Serves 4",
         "?  Boil beans for 2 hours in 21 cups of water.",
@@ -1700,13 +1556,7 @@
       "id": "15068",
       "title": "Wukunu\n(Sweet Potatoes & Dehulled Black Beans)",
       "about": "Wukunu is a traditional dish common in Taita community. It was commonly served during ceremonies such\nas burials, weddings, or other special occasions. Traditionally, it was eaten without any accompaniment.\nThe modern practice incorporates some vegetables or salad.",
-      "ingredients": [
-        "black beans",
-        "dolichos lablab",
-        "sweet potatoes",
-        "water",
-        "salt"
-      ],
+      "ingredients": ["black beans", "dolichos lablab", "sweet potatoes", "water", "salt"],
       "directions": [
         "Preparation 15 minutes | Cooking 2 hours 30 min\u0002utes | Serves 4",
         "?  Sort the black beans and wash.",
@@ -1741,12 +1591,7 @@
       "id": "0",
       "title": "Kimanga Cha Ndizi\n(Smoked Green Bananas and Kidney Beans)",
       "about": "Kimanga is a traditional dish in the Taita community particularly in the highland part of Taita. It is common\u0002ly made from smoked green bananas that gives the dish its characteristic flavour. It is served during lunch\nor dinner as a main meal served to the entire family. Traditionally, it was preferred during drought period\ndue to its filling effect and usually eaten plain.",
-      "ingredients": [
-        "beans",
-        "green bananas",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["beans", "green bananas", "salt", "water"],
       "directions": [
         "Preparation 1 week (for smoking the bananas us\u0002ing a charcoal stove) | Cooking 2 hours 20 minutes",
         "| Serves 4",
@@ -1774,12 +1619,7 @@
       "id": "15084",
       "title": "Kimanga cha Mihogo\n(Mashed Cassava and Pigeon Peas)",
       "about": "This is a variant of the traditional Kimanga among the lowland Taita community and other drier parts of\nTaita bordering the Kamba community. It was a choice meal during drought and was liked for its filling\neffect. In modern times it is still common and eaten as a main meal during lunch and dinner by the entire\nfamily",
-      "ingredients": [
-        "cassava",
-        "pigeon peas",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["cassava", "pigeon peas", "salt", "water"],
       "directions": [
         "Preparation 10 minutes | Cooking 2 hours 45minutes |",
         "Serves 4",
@@ -1811,11 +1651,7 @@
       "id": "15103",
       "title": "Mashed Potatoes\n& Bananas",
       "about": "This is a typical infant dish among many Kenyan communities. It is usually mashed to a light texture and\nsometimes served with added milk. Sometimes a green leafy vegetable may be added and mashed together.",
-      "ingredients": [
-        "potatoes",
-        "water",
-        "salt"
-      ],
+      "ingredients": ["potatoes", "water", "salt"],
       "directions": [
         "Preparation 10 minutes | Cooking 25 minutes |",
         "Serves 4",
@@ -1844,11 +1680,7 @@
       "id": "15104",
       "title": "Mashed Bananas \nPlain",
       "about": "This is a typical infant dish among many Kenyan communities. It is usually mashed to a light texture and\nsometimes served with added milk. Sometimes a green leafy vegetable may be added and mashed to\u0002gether.",
-      "ingredients": [
-        "unpeeled bananas",
-        "water",
-        "salt"
-      ],
+      "ingredients": ["unpeeled bananas", "water", "salt"],
       "directions": [
         "Preparation 10 minutes | Cooking 45 minutes | Serves",
         "4",
@@ -1873,12 +1705,7 @@
       "id": "15105",
       "title": "Enriched Mashed \nPotatoes",
       "about": "This is a typical infant dish among many Kenyan communities. It is usually mashed to a light texture and\nsometimes served with added milk. Sometimes a green leafy vegetable may be added and mashed together.",
-      "ingredients": [
-        "potatoes",
-        "water",
-        "salt",
-        "margarine"
-      ],
+      "ingredients": ["potatoes", "water", "salt", "margarine"],
       "directions": [
         "Preparation 10 minutes | Cooking 55 minutes |",
         "Serves 4",
@@ -1907,12 +1734,7 @@
       "id": "15106",
       "title": "Enriched Mashed \nBananas",
       "about": "This is a typical infant dish among many Kenyan communities. It is usually mashed to a light texture and\nsometimes served with added milk. Sometimes a green leafy vegetable may be added and mashed to\u0002gether.",
-      "ingredients": [
-        "green bananas",
-        "water",
-        "salt",
-        "margarine"
-      ],
+      "ingredients": ["green bananas", "water", "salt", "margarine"],
       "directions": [
         "Preparation 10 minutes | Cooking 40 minutes |",
         "Serves 4",
@@ -1940,13 +1762,7 @@
       "id": "15111",
       "title": "Kimito\n(Mashed Beans & Potatoes)",
       "about": "Kimito is common among the Embu, Kikuyu and Meru communities. It is served as a main dish during\nlunch or dinner and enjoyed by the entire family. Traditionally, this was eaten dry but in modern day this\ndish is sometimes accompanied by various stews. It is also served to infants above 6 months of age.",
-      "ingredients": [
-        "potatoes",
-        "beans",
-        "salt",
-        "cooking oil",
-        "water"
-      ],
+      "ingredients": ["potatoes", "beans", "salt", "cooking oil", "water"],
       "directions": [
         "Preparation 10 minutes | Cooking 3 hours | Serves 4",
         "?  Sort and wash the kidney beans.",
@@ -1980,12 +1796,7 @@
       "id": "15090",
       "title": "Kimanga cha \nViazi Vitamu\n (Mashed Sweet Potatoes and Black Beans)",
       "about": "Kimanga is a common name for the mashed dishes among the Taita community. This recipe is particularly\nunique as it is a mix of sweet potato and black beans. It is usually eaten plain. It is common in both low\u0002land and highland parts of Taita. To date, this serves as a main meal and is eaten during lunch or dinner.",
-      "ingredients": [
-        "sweet potatoes",
-        "dolichos beans",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["sweet potatoes", "dolichos beans", "salt", "water"],
       "directions": [
         "Preparation 15 minutes | Cooking 3 hours | Serves 4",
         "?  Sort the black beans and wash.",
@@ -2015,12 +1826,7 @@
       "id": "15121",
       "title": "Enriched Matoke",
       "about": "This a typical infant dish among the Kisii community. It is wonderfully enriched with peanut butter paste to\ngive it a smooth taste. Infants are fed on this from the age of 6 months onwards. Sometimes, this recipe is\nmade with some green leafy vegetables.",
-      "ingredients": [
-        "green bananas",
-        "peanut butter",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["green bananas", "peanut butter", "salt", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 25 minutes | Serves 4",
         "?  Peel and wash the bananas.",
@@ -2096,13 +1902,7 @@
       "id": "15049",
       "title": "Ashir(maize)",
       "about": "This dish is typical to the Borana?s. A delicious meal of huskless maize mixed with milk. The husks are\nremoved prior to cooking by pounding with a mortar and pestle. The mixture is boiled with added sugar\nand salted for a tantalizing taste.",
-      "ingredients": [
-        "pounded maize",
-        "cow milk",
-        "sugar",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["pounded maize", "cow milk", "sugar", "salt", "water"],
       "directions": [
         "Preparation 10 minutes ? Cooking 2 hours 15 min\u0002utes ? Serves 4",
         "?  Sort and wash the pounded maize.",
@@ -2173,13 +1973,7 @@
       "id": "15053",
       "title": "Githeri\n(Stewed Maize & Beans)",
       "about": "This is yet another variant of githeri. It is mainly prepared using dry maize and beans. It is common among\nmost communities in Western, Central, Eastern and Rift Valley parts of Kenya. This variant of githeri is one\namong the most common staples in Kenya. It is mostly eaten as a main dish during lunch time and dinner\nby the entire family. It is well balanced in nutrients and is considered complete on its own.",
-      "ingredients": [
-        "maize and beans",
-        "onion",
-        "cooking oil",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["maize and beans", "onion", "cooking oil", "salt", "water"],
       "directions": [
         "Preparation 10 minutes | Cooking 15 minutes |",
         "Serves 4",
@@ -2256,15 +2050,7 @@
       "id": "15086",
       "title": "Muthokoi\n(Dehulled Maize and Beans)",
       "about": "This is a traditional dish typical among the Kamba, Taita and Meru communities. The Borana have this dish\nby the name Ashir but it?s preparation is unique to their community. The recipe is prepared from dehulled\nmaize which is boiled together with dry beans. Once stewed it gives a delicious smooth taste. It is mainly\neaten as a main dish during lunch or dinner.",
-      "ingredients": [
-        "maize",
-        "beans",
-        "water",
-        "onion",
-        "cooking fat",
-        "vegetable fat",
-        "salt"
-      ],
+      "ingredients": ["maize", "beans", "water", "onion", "cooking fat", "vegetable fat", "salt"],
       "directions": [
         "Preparation:",
         "?  Put the maize and beans into a pot and boil in all",
@@ -2297,14 +2083,7 @@
       "id": "15093",
       "title": "Nchenga/ Nzenga \n(Crushed Maize)",
       "about": "This ancient dish has been a delicacy among the Kamba, Taita and Meru communities for many years as a\nrice substitute. The maize is crushed to small size to mimic the size of rice grain, then it is carefully pre\u0002pared to yield a rice-like dish with a distinct taste. Traditionally, it was eaten on its own or a legume stew\nand could also be prepared with a variety of ingredients including meats, legumes or vegetables. It is\neaten by the entire family",
-      "ingredients": [
-        "crushed maize",
-        "onion",
-        "carrot",
-        "cooking fat",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["crushed maize", "onion", "carrot", "cooking fat", "salt", "water"],
       "directions": [
         "Preparation 10-15 minutes | Cooking 1 hour | Serves 4",
         "?  Wash the crushed maize and boil in all the water until",
@@ -2335,15 +2114,7 @@
       "id": "15045",
       "title": "Mchuzi wa Maharagwe\n(Bean Stew)",
       "about": "The ancient bean stew is chief among the legume stews in Kenya. Different varieties of beans are used to\nprepare bean stew by different communities depending on availability. Most communities in Kenya utilize\nbean stew as an accompaniment to starchy dishes such as Ugali, rice or chapatti. It is commonly eaten for\nlunch or dinner.",
-      "ingredients": [
-        "beans",
-        "water",
-        "tomato",
-        "onion",
-        "cooking oil",
-        "salt",
-        "coriander"
-      ],
+      "ingredients": ["beans", "water", "tomato", "onion", "cooking oil", "salt", "coriander"],
       "directions": [
         "Preparation 2 hours 40 minutes | Cooking 30 minutes |",
         "Serves 4",
@@ -2377,14 +2148,7 @@
       "id": "15046",
       "title": "Mchuzi wa Ndengu Kamande\n(Lentil Stew)",
       "about": "Lentil stew is made from lentil grains which give a characteristic taste to the dish. It is quite aromatic and\nprovides the desired fragrance as an accompaniment to starch dishes such as rice and chapatti. It is usual\u0002ly served during lunch or dinner and is common in most parts of the country",
-      "ingredients": [
-        "lentils",
-        "water",
-        "onions",
-        "tomato",
-        "cooking oil",
-        "salt"
-      ],
+      "ingredients": ["lentils", "water", "onions", "tomato", "cooking oil", "salt"],
       "directions": [
         "Preparation:",
         "?  Sort and wash all the dry lentils. Put in a cooking",
@@ -2419,14 +2183,7 @@
       "id": "15044",
       "title": "Mchuzi wa Ndengu \n(Green Gram Stew)",
       "about": "Green gram stew is one of the most common legume stews in Kenya. Eaten across the country, it serves\nas an accompaniment to starches such as Ugali, rice or chapatti. Sometimes green grams (or Ndengu\nas they are commonly known) are used as a key ingredient in making rice dishes as well as mashed with\ninfant dishes",
-      "ingredients": [
-        "green gram",
-        "water",
-        "onion",
-        "tomato",
-        "cooking oil",
-        "salt"
-      ],
+      "ingredients": ["green gram", "water", "onion", "tomato", "cooking oil", "salt"],
       "directions": [
         "Preparation:",
         "?  Sort and wash all the green grams.",
@@ -2505,14 +2262,7 @@
       "id": "15114",
       "title": "Black Bean Stew\n(Njahi/Dolichos Bean Stew)",
       "about": "Black bean stew popularly known as Njahi stew, is common among the Kikuyu, Kisii, Meru, Embu and\nLuhya communities. It is usually used as an accompaniment to a starch dish such as Ugali, Chapati or rice.\nTraditionally, this was a preserve of lactating moms as ?njahis? were believed to enhance milk production.",
-      "ingredients": [
-        "black beans, dolichos",
-        "onions",
-        "tomato",
-        "cooking oil",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["black beans, dolichos", "onions", "tomato", "cooking oil", "salt", "water"],
       "directions": [
         "Preparation 10-15 | Cooking 3 hours 15 minutes |",
         "Serves 4",
@@ -2547,14 +2297,7 @@
       "id": "15092",
       "title": "Mchuzi wa Mbaazi\n(Pigeon Peas Stew)",
       "about": "Commonly known as ?mbaazi? stew, this recipe is common among the Kamba community. It is eaten with\nstarchy meals such as Ugali, rice or chapatti and often served during lunch or dinner. Other farming com\u0002munities also utilize this recipe in a similar manner.",
-      "ingredients": [
-        "pigeon pea",
-        "onion",
-        "tomatoes",
-        "cooking fat",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["pigeon pea", "onion", "tomatoes", "cooking fat", "salt", "water"],
       "directions": [
         "Preparation 10 minutes | Cooking 2 hours 40 min\u0002utes | Serves 4",
         "?  Boil all the pigeon peas in all the water.",
@@ -2587,13 +2330,7 @@
       "id": "15142",
       "title": "Firinda\n(Skinned Bean Stew)",
       "about": "Firinda is a dish unique to the Nubian community. It is specially made by skinning boiled beans then sau\u0002t?d in spring onions. It is a popular accompaniment to starchy dishes like Ugali, mkate kuta and rice. It is\nserved mainly during lunch and dinner to the entire family",
-      "ingredients": [
-        "beans",
-        "cooking oil",
-        "water",
-        "salt,",
-        "spring onions"
-      ],
+      "ingredients": ["beans", "cooking oil", "water", "salt,", "spring onions"],
       "directions": [
         "Preparation 3 hours 15 minutes | Cooking 2 hours |",
         "Serves 4",
@@ -2626,14 +2363,7 @@
       "id": "15085",
       "title": "Ndoto\n(Sauted Red Kidney Beans & Red Sorghum)",
       "about": "Ndoto is a traditional dish among the Taita community. It was prepared during ?Kuaikwa? (the Taita tradi\u0002tional initiation ceremony for girls to prepare them for marriage). It was also prepared during weddings.",
-      "ingredients": [
-        "red sorghum",
-        "kidney beans",
-        "water",
-        "salt",
-        "onions",
-        "cooking oil"
-      ],
+      "ingredients": ["red sorghum", "kidney beans", "water", "salt", "onions", "cooking oil"],
       "directions": [
         "Preparation:",
         "?  Sort the beans. Wash and put on the fire in 21",
@@ -2710,14 +2440,7 @@
       "id": "15087",
       "title": "Beef Stew",
       "about": "Beef stew is the most common animal protein based stew in Kenya. It is prepared in different ways with\nthe standard ingredients featured in this recipe. It is usually eaten with starchy dishes such as Ugali, rice,\npotatoes, chapatti or mashed dishes. It is more common in urban areas than in rural areas. Often, it is\nserved for lunch or dinner and is relished by the entire family",
-      "ingredients": [
-        "beef",
-        "onions",
-        "tomato",
-        "salt",
-        "cooking oil",
-        "water"
-      ],
+      "ingredients": ["beef", "onions", "tomato", "salt", "cooking oil", "water"],
       "directions": [
         "Preparation 10 minutes | Cooking 25 minutes |",
         "Serve 4",
@@ -2751,14 +2474,7 @@
       "id": "15099",
       "title": "Stir Fried \nGoat Meat",
       "about": "In most cases goat meat is stir fried rather than stewed. It is common in many communities across the\ncountry. It is eaten with starchy dishes including rice, Ugali among others.",
-      "ingredients": [
-        "meat goat",
-        "onion",
-        "tomato",
-        "cooking oil",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["meat goat", "onion", "tomato", "cooking oil", "salt", "water"],
       "directions": [
         "Preparation 5-10 minutes | Cooking 1 hour 40",
         "minutes | Serves 4",
@@ -2787,14 +2503,7 @@
       "id": "15098",
       "title": "Stir Fried Beef",
       "about": "Stir fried beef is common across many communities in Kenya even though it is more popular among urban\ndwellers than rural dwellers. It is eaten with starchy foods such as Ugali, rice, potatoes or bananas. Often,\nit is enjoyed by the entire family and served during lunch or dinner.",
-      "ingredients": [
-        "beef",
-        "water",
-        "onions",
-        "tomato",
-        "cooking oil",
-        "salt"
-      ],
+      "ingredients": ["beef", "water", "onions", "tomato", "cooking oil", "salt"],
       "directions": [
         "Preparation time 10 minutes | Cooking 1 hour |",
         "Serves 4",
@@ -3030,11 +2739,7 @@
       "id": "15096",
       "title": "Fried Tilapia",
       "about": "Fried Tilapia is a delicacy that is traditionally relished among the Luo community. The current practice has\nseen many other communities adopt this recipe particularly in urban areas. It is usually eaten with Ugali\nand served during lunch or dinner to the entire family",
-      "ingredients": [
-        "tilapia",
-        "cooking oil",
-        "salt"
-      ],
+      "ingredients": ["tilapia", "cooking oil", "salt"],
       "directions": [
         "Preparation 10 minutes | Cooking 30 minutes | Serves 4",
         "?Prepare and wash the fresh fish.",
@@ -3126,14 +2831,7 @@
       "id": "15107",
       "title": "Stewed Nile Perch",
       "about": "This dish is dominant among the Luo and Luhya communities. Other communities as well have embraced\nconsumption of this recipe and is common in majority of homes in the rural areas. It is mainly served with\nUgali and eaten during lunch or dinner.",
-      "ingredients": [
-        "Nile perch fish",
-        "onion",
-        "tomato",
-        "cooking oil",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["Nile perch fish", "onion", "tomato", "cooking oil", "salt", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 1 hour 20 minutes |",
         "Serves 4",
@@ -3168,13 +2866,7 @@
       "id": "15108",
       "title": "Stewed Goat Meat",
       "about": "Goat meat is common across the country both in rural and urban areas. This dish is usually eaten with a\nstarchy dish such as Ugali, rice or chapatti. It is served during major meals and relished by the entire family",
-      "ingredients": [
-        "goat meat",
-        "onion",
-        "tomato",
-        "cooking oil",
-        "salt"
-      ],
+      "ingredients": ["goat meat", "onion", "tomato", "cooking oil", "salt"],
       "directions": [
         "Preparation 5-10 minutes | Cooking 45 minutes |",
         "Serves 4",
@@ -3209,11 +2901,7 @@
       "id": "15047",
       "title": "Nyirinyiri \n(Camel Meat)",
       "about": "Nyirinyiri is very tiny tender pieces of meat. It is stored in the oil that was cooked in and lasts very long\nwithout refrigeration. It can be eaten on its own as a breakfast snack or served with mandazi for special\nguests or even sprinkled on other foods to liven up the flavour. It is a typical dish among Borana, Gabra,\nRendille, and other pastoralists?ommunities.",
-      "ingredients": [
-        "camel meat",
-        "camel hump",
-        "salt"
-      ],
+      "ingredients": ["camel meat", "camel hump", "salt"],
       "directions": [
         "Preparation 15 minutes | Cooking 1 hour 15 minutes |",
         "Serves 4",
@@ -3244,11 +2932,7 @@
       "id": "15050",
       "title": "Ikalanga\n(Sheep Tail Fat)",
       "about": "Ikalanga is very similar to Nyirinyiri. It is a loved dish eaten as an accompaniment to a starch such as rice or\nugali during lunch or dinner. Rendille, Borana and Gabra, Maasai and other pastoralists communities. This\nis also commonly known as Kalanga.",
-      "ingredients": [
-        "sheep fat",
-        "water",
-        "salt"
-      ],
+      "ingredients": ["sheep fat", "water", "salt"],
       "directions": [
         "Preparation 10 minutes | Cooking 40 minutes |",
         "Serves 4",
@@ -3375,12 +3059,7 @@
       "id": "15072",
       "title": "Tsiswa \n(Stewed Termites)",
       "about": "This is a traditional delicacy among the Luhya community. It was traditionally eaten by boys after circumci\u0002sion. In modern practice, this dish is relished by the entire family due to its delicious taste, its satiety effect\nand its dense nutrient content. It is usually eaten with Ugali during lunch or dinner and as an all-day snack.",
-      "ingredients": [
-        "dried termite",
-        "onion",
-        "cow",
-        "salt"
-      ],
+      "ingredients": ["dried termite", "onion", "cow", "salt"],
       "directions": [
         "Preparation 10 minutes | Cooking 30 minutes | Serves 4 ?ash the termites. ?eel, wash and finely chop the onions. ?ut milk into a cooking pot and place on heat. ?dd onions and the washed termites. ?dd salt and stir to mix while heating. ?ontinue stirring and intervals. ?educe the heat and cook until dry. ?emove and serve."
       ],
@@ -3400,13 +3079,7 @@
       "id": "15101",
       "title": "Omena wa Kukaangwa \n(Fried Omena)",
       "about": "?mena?s it is commonly known is a tiny fish mainly harvested at the Lake Victoria. As such, it is a\ndelicacy among the Luo community. However, other communities in Kenya have embraced it as a main\nprotein dish. It is mainly eaten with Ugali.",
-      "ingredients": [
-        "omena",
-        "spring onion",
-        "tomato",
-        "cooking oil",
-        "salt"
-      ],
+      "ingredients": ["omena", "spring onion", "tomato", "cooking oil", "salt"],
       "directions": [
         "Preparation 10 minutes | Cooking 30 minutes | Serves",
         "4",
@@ -3445,11 +3118,7 @@
       "id": "15022",
       "title": "Fried egg \n(Mayai Ya Kukaangwa)",
       "about": "A recipe packed with nutrients, with an old style of cooking, is the fried egg! Everybody in the family\nenjoys it with a dash of salt! Served mainly during breakfast, this recipe is an all-time favourite of many\nchildren.",
-      "ingredients": [
-        "egg",
-        "salt",
-        "cooking oil"
-      ],
+      "ingredients": ["egg", "salt", "cooking oil"],
       "directions": [
         "Preparation 5 minutes | Cooking 1 minute | Serves 1",
         "?Break the egg into a clean bowl.",
@@ -3475,13 +3144,7 @@
       "id": "15023",
       "title": "Omelette",
       "about": "Omelette is one of the legendary dishes that have become popular in Kenya among urbanite communi\u0002ties. Even though it uses locally grown ingredients, it is still viewed as an exotic dish. Mainly served for\nbreakfast, this recipe is enjoyed by the entire family",
-      "ingredients": [
-        "eggs",
-        "tomato",
-        "onion",
-        "salt",
-        "cooking oil"
-      ],
+      "ingredients": ["eggs", "tomato", "onion", "salt", "cooking oil"],
       "directions": [
         "Preparation 5 minutes | Cooking 15 minutes |",
         "Serves 4",
@@ -3549,13 +3212,7 @@
       "id": "15070",
       "title": "Ingokho\n (Stewed Chicken)",
       "about": "Stewed chicken is common among many communities in Kenya. It has different names but ingokho stands\nout due to the way this dish is special to the Luhya community. It is eaten as a protein to a main meal and\nserved with Ugali or any other starch. It is savoured by the entire family.",
-      "ingredients": [
-        "chicken",
-        "onions",
-        "green capsicum",
-        "salt",
-        "tomato"
-      ],
+      "ingredients": ["chicken", "onions", "green capsicum", "salt", "tomato"],
       "directions": [
         "Preparation 15 minutes | Cooking 1 hour 15 minutes",
         "| Serves 4",
@@ -3599,11 +3256,7 @@
       "id": "15073",
       "title": "Ingokho\n(Fried Chicken)",
       "about": "?ngokho?s it is commonly known among the Luhya community is such a special delicacy. Traditionally, it\nwas eaten during special occasions such as dowry ceremonies. In modern practice, fried chicken is eaten\nas part of a main meal served during lunch or supper. It is relished by the entire family and can be eaten\nwith Ugali, chapatti, or any other starch.",
-      "ingredients": [
-        "whole chicken",
-        "salt",
-        "cooking oil"
-      ],
+      "ingredients": ["whole chicken", "salt", "cooking oil"],
       "directions": [
         "Preparation 10 minutes | Cooking 1 hour | Serves 4",
         "?Cut the chicken into large chunks.",
@@ -3631,14 +3284,7 @@
       "id": "15102",
       "title": "Aluru\n (Stewed Quails)",
       "about": "Stewed quails commonly known as ?luru?s a traditional dish typical to the Luhya and Luo communities.\nAluru was prepared during special occasions. It is commonly known as Likhanga among the Luhya com\u0002munity",
-      "ingredients": [
-        "quail",
-        "tomato",
-        "onion",
-        "salt",
-        "cow milk",
-        "cooking oil"
-      ],
+      "ingredients": ["quail", "tomato", "onion", "salt", "cow milk", "cooking oil"],
       "directions": [
         "Preparation 10-15 minutes | Cooking 1 hour | Serves",
         "4",
@@ -3676,14 +3322,7 @@
       "id": "15095",
       "title": "Likhanga\n Stewed Guinea Fowl",
       "about": "This is a typical Luhya dish eaten during special occasions especially by boys after circumcision.",
-      "ingredients": [
-        "guinea fowl",
-        "onion",
-        "tomato",
-        "cooking oil",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["guinea fowl", "onion", "tomato", "cooking oil", "salt", "water"],
       "directions": [
         "Preparation 30 minutes | Cooking 15 minutes |",
         "Serves 4",
@@ -3719,12 +3358,7 @@
       "id": "15088",
       "title": "Munono\n(Cow Blood, Beef, Cow Fat)",
       "about": "Munono is a Maasai dish prepared when an animal is slaughtered and comprises of blood, beef and fat. It\nis eaten by the entire family and acts as a starter while the rest of meat is cooking. It is eaten immediately\nto avoid spoilage. Culturally, only men are allowed to prepare this dish as it is done at the point of slaugh\u0002ter (usually in a bush)",
-      "ingredients": [
-        "cow blood",
-        "beef",
-        "cow fat",
-        "water"
-      ],
+      "ingredients": ["cow blood", "beef", "cow fat", "water"],
       "directions": [
         "Preparation 10 minutes | Cooking 1 hour 30 minutes |",
         "Serves 4",
@@ -3753,14 +3387,7 @@
       "id": "15071",
       "title": "Malesele\n(Cow Blood with Sour Milk)",
       "about": "This dish is traditional among the Luhya community. It is prepared on special ceremonies such as dowry\ndiscussion",
-      "ingredients": [
-        "cow fat",
-        "cow blood",
-        "onion",
-        "sour milk",
-        "salt",
-        "tomato"
-      ],
+      "ingredients": ["cow fat", "cow blood", "onion", "sour milk", "salt", "tomato"],
       "directions": [
         "Preparation 5 minutes | Cooking 1 hour 15 minutes",
         "| Serves 4",
@@ -3796,10 +3423,7 @@
       "id": "15048",
       "title": "Mbuboyi\n (Blood Cooked in Fresh Milk)",
       "about": "Mbuboyi is a traditional dish typical to the Rendille community",
-      "ingredients": [
-        "cow blood",
-        "cow milk"
-      ],
+      "ingredients": ["cow blood", "cow milk"],
       "directions": [
         "Preparation 5 minutes | Cooking 20 minutes |",
         "Serves 4",
@@ -3825,10 +3449,7 @@
       "id": "15089",
       "title": "Osarge Ogkole\n(Fresh Blood and Milk Soup)",
       "about": "This is a traditional dish typical to the pastoralist Maasai community. It is prepared immediately after\nslaughter of a cow. This soup was traditionally given to the sick to hasten their recovery. In modern day,\nthis recipe is enjoyed by the entire family",
-      "ingredients": [
-        "cow milk",
-        "cow blood"
-      ],
+      "ingredients": ["cow milk", "cow blood"],
       "directions": [
         "Preparation 5 minutes | Cooking 15 minutes |",
         "Serves 4",
@@ -3852,13 +3473,7 @@
       "id": "15031",
       "title": "Sukuma Wiki\n(Stir-fried Kales)",
       "about": "Sukuma wiki is the most commonly used green vegetable in Kenya. It is commonly served with Ugali as a\nside dish.",
-      "ingredients": [
-        "sukuma wiki",
-        "tomatoes",
-        "onion",
-        "cooking oil",
-        "salt"
-      ],
+      "ingredients": ["sukuma wiki", "tomatoes", "onion", "cooking oil", "salt"],
       "directions": [
         "Preparation 15 minutes | Cooking 20 minutes |",
         "Serves 4",
@@ -3892,12 +3507,7 @@
       "id": "15032",
       "title": "Stir-fried Cabbage",
       "about": "Stir fried cabbage is common in many communities in Kenya. It is served with various starchy dishes as a\nside dish.",
-      "ingredients": [
-        "cabbage",
-        "onion",
-        "cooking oil",
-        "salt"
-      ],
+      "ingredients": ["cabbage", "onion", "cooking oil", "salt"],
       "directions": [
         "Preparation 10 minutes | Cooking 15 minutes |",
         "Serves 4",
@@ -3928,15 +3538,7 @@
       "id": "15033",
       "title": "Mrenda and Seveve\n(Jute Mallow & Pumpkin Leaves)",
       "about": "This blend of ?renda?nd pumpkin leaves is a traditional vegetable dish among the Luhya community.\nIt is usually served with Ugali.",
-      "ingredients": [
-        "jute mallow",
-        "pumpkin",
-        "onion",
-        "salt",
-        "water",
-        "tomato",
-        "cow milk"
-      ],
+      "ingredients": ["jute mallow", "pumpkin", "onion", "salt", "water", "tomato", "cow milk"],
       "directions": [
         "Preparation 15 minutes | Cooking 30 minutes |",
         "Serves 4",
@@ -3969,14 +3571,7 @@
       "id": "15034",
       "title": "Pumpkin Leaves",
       "about": "Pumpkin leaves are rich in nutrients and are loved by many communities in Kenya. When stir fried, they\nare served with Ugali and at times pumpkin leaves are added to mashed dishes.",
-      "ingredients": [
-        "pumpkin leaves",
-        "onion",
-        "tomato",
-        "cooking oil",
-        "cow milk",
-        "salt"
-      ],
+      "ingredients": ["pumpkin leaves", "onion", "tomato", "cooking oil", "cow milk", "salt"],
       "directions": [
         "Preparation 10 minutes | Cooking 20 minutes |",
         "Serves 4",
@@ -4048,13 +3643,7 @@
       "id": "15039",
       "title": "Nderema\n(Vine Spinach)",
       "about": "Vine spinach commonly referred to as ?derema?s traditional to the Luhya and Kuria communities. It is\nusually eaten with Ugali.",
-      "ingredients": [
-        "spinach leaves",
-        "tomato",
-        "onion",
-        "salt",
-        "ghee"
-      ],
+      "ingredients": ["spinach leaves", "tomato", "onion", "salt", "ghee"],
       "directions": [
         "Preparation 15 minutes | Cooking 20 minutes |",
         "Serves 4",
@@ -4085,13 +3674,7 @@
       "id": "15030",
       "title": "Terere\n(Stir-fried Amaranth Leaves)",
       "about": "Amaranth leaves commonly known as ?erere?s an indigenous vegetable that used to grow as a weed.\nNowadays, it is cultivated and eaten across all communities in Kenya. When cooked, amaranth leaves\nhave a distinct aroma and a soft appeal. Most communities use amaranth leaves in mashed infant dishes\nbut also as a side dish that is eaten with Ugali",
-      "ingredients": [
-        "amaranth leaves",
-        "tomato",
-        "onion",
-        "salt",
-        "cooking oil"
-      ],
+      "ingredients": ["amaranth leaves", "tomato", "onion", "salt", "cooking oil"],
       "directions": [
         "Preparation 10 minutes | Cooking 20 minutes |",
         "Serves 4",
@@ -4120,13 +3703,7 @@
       "id": "15120",
       "title": "Mashed Pumpkin \n& Black Nightshade \nLeaves(Managu)",
       "about": "This vegetable dish is popular among the Kisii community. The added pumpkin gives it a sweet taste to\nbalance the bitterness of ?anagu?It is eaten with Ugali as a side dish",
-      "ingredients": [
-        "black night shade leaves",
-        "pumpkin",
-        "salt",
-        "cooking oil",
-        "water"
-      ],
+      "ingredients": ["black night shade leaves", "pumpkin", "salt", "cooking oil", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 1 hour | Serves 4",
         "?Peel the pumpkin and wash.",
@@ -4155,13 +3732,7 @@
       "id": "15077",
       "title": "Thabai / Thaa\n (Stinging Nettle Leaves)",
       "about": "Stinging nettle commonly known as ?habai?r ?haa?s a traditional vegetable popular among the Ki\u0002kuyu and Meru communities. It is usually eaten with ugali as a side dish during lunch or dinner. Sometimes\nit is added to mashed food to enrich with nutrients.",
-      "ingredients": [
-        "stinging nettle leaves",
-        "onion",
-        "cooking oil",
-        "salt",
-        "water"
-      ],
+      "ingredients": ["stinging nettle leaves", "onion", "cooking oil", "salt", "water"],
       "directions": [
         "Preparation 15 minutes | Cooking 45 minutes |",
         "Serves 4",
@@ -4239,13 +3810,7 @@
       "id": "15079",
       "title": "Kunde & Mrenda\n(Stewed Cowpeas Leaves and Jute Mallow leaves)",
       "about": "This vegetable blend is most common among the Luhya communities. It is usually eaten as a side dish\nwith Ugali. Therefore, it is mostly consumed during lunch or dinner. It is garnished with milk to give a\nsmooth and creamy taste",
-      "ingredients": [
-        "cow-pea leaves",
-        "jute mallow leaves",
-        "magadi",
-        "salt",
-        "milk"
-      ],
+      "ingredients": ["cow-pea leaves", "jute mallow leaves", "magadi", "salt", "milk"],
       "directions": [
         "Preparation 10 minutes | Cooking 30 minutes | Serves",
         "4",
@@ -4277,12 +3842,7 @@
       "id": "15076",
       "title": "Stir-Fried Spinach",
       "about": "This is one of the most common green vegetable dishes available in Kenya. It is consumed across all com\u0002munities in Kenya especially those living in urban areas. It is mainly eaten with Ugali or any other starchy\nmeal as a side dish. Sometimes, it is cooked together with other green vegetables.",
-      "ingredients": [
-        "spinach",
-        "onion",
-        "cooking oil",
-        "salt"
-      ],
+      "ingredients": ["spinach", "onion", "cooking oil", "salt"],
       "directions": [
         "Preparation 10 minutes | Cooking 15 minutes | Serves",
         "4",
@@ -4311,12 +3871,7 @@
       "id": "15091",
       "title": "Kitojo\n(Sweet Potato Leaves)",
       "about": "?itojo?s it is commonly called among the Taita community, is a delicious dish made from sweet potato\nleaves. It is commonly eaten with Ugali.",
-      "ingredients": [
-        "sweet potato leaves",
-        "onion",
-        "cooking oil",
-        "salt"
-      ],
+      "ingredients": ["sweet potato leaves", "onion", "cooking oil", "salt"],
       "directions": [
         "Preparation time 5-10 | Cooking time 15 minutes |",
         "Serves 4",
@@ -4644,16 +4199,7 @@
       "id": "15052",
       "title": "Yam Stew",
       "about": "The ancient yam is among the oldest roots in Kenya. It is a traditional delicacy of the Meru community.\nTo date, yams are eaten as a stew as indicated in this recipe. It can also be prepared with meat or other\nprotein. Loved for its filling effect, yam stew is packed with good wholesome starch ideal for the health\nconscious. It can be eaten during lunch or dinner as a main dish served to the whole family.",
-      "ingredients": [
-        "yam",
-        "potato",
-        "onion",
-        "tomato",
-        "carrot",
-        "salt",
-        "cooking oil",
-        "water"
-      ],
+      "ingredients": ["yam", "potato", "onion", "tomato", "carrot", "salt", "cooking oil", "water"],
       "directions": [
         "Preparation 20 minutes | Cooking 1 hour |",
         "Serves 4",
@@ -4689,13 +4235,7 @@
       "id": "15141",
       "title": "Pumpkins with \nPeanut Butter",
       "about": "This sweet, buttery recipe is an infant dish served typically for lunch or dinner by the urban communities",
-      "ingredients": [
-        "pumpkin",
-        "peanut butter",
-        "cooking oil",
-        "water",
-        "salt"
-      ],
+      "ingredients": ["pumpkin", "peanut butter", "cooking oil", "water", "salt"],
       "directions": [
         "Preparation 5 minutes | Cooking 45 minutes |",
         "Serves 4",
@@ -4813,12 +4353,7 @@
       "id": "15117",
       "title": "Pan Fried \nArrowroots",
       "about": "Pan fried arrowroots is a breakfast dish typical among urban dwellers but originally eaten among the Kikuyu and Meru communities. It is usually eaten with tea.",
-      "ingredients": [
-        "arrowroot",
-        "cooking oil",
-        "water",
-        "salt"
-      ],
+      "ingredients": ["arrowroot", "cooking oil", "water", "salt"],
       "directions": [
         "Preparation 5 minutes | Cooking 30 minutes | Serves",
         "4",
@@ -4851,11 +4386,7 @@
       "id": "15109",
       "title": "Pan Fried Sweet \nPotatoes",
       "about": "This delicious recipe is a typical breakfast dish common among urban dwellers but originally from Kisii\ncommunity. It is usually eaten with a cup of tea.",
-      "ingredients": [
-        "sweet potato",
-        "water",
-        "oil"
-      ],
+      "ingredients": ["sweet potato", "water", "oil"],
       "directions": [
         "Preparation 5 minutes | Cooking 1 hour 15 minutes",
         "| Serves 4",
@@ -4940,10 +4471,7 @@
       "id": "15110",
       "title": "Potato Chips",
       "about": "This is typically an urban dish in many parts of Kenya. It is served to the whole family mainly during lunch.\nIt is eaten with a protein dish such as fried chicken, stir fried beef or sausages. It can also be eaten plain or\nwith vegetables.",
-      "ingredients": [
-        "potato",
-        "cooking oil"
-      ],
+      "ingredients": ["potato", "cooking oil"],
       "directions": [
         "Preparation 5 minutes | Cooking 30 minutes | Serves 4",
         "?Peel the potatoes, wash and cut lengthways into thin",
@@ -4972,14 +4500,7 @@
       "id": "15097",
       "title": "Stewed Green \nBananas",
       "about": "This dish is typical among the Kisii community but also popular in other parts of the country. It serves the\nwhole family and is usually used as an infant dish. Stewed green bananas are eaten for lunch or dinner.",
-      "ingredients": [
-        "green banana",
-        "onion",
-        "tomato",
-        "salt",
-        "cooking oil",
-        "water"
-      ],
+      "ingredients": ["green banana", "onion", "tomato", "salt", "cooking oil", "water"],
       "directions": [
         "Preparation 10 minutes | Cooking 1 hour | Serves 4",
         "?Peel the onions, wash and cut into a bowl.",
@@ -5053,10 +4574,7 @@
       "id": "15005",
       "title": "Whole Maize \nFlour Ugali",
       "about": "This recipe represents the most consumed Ugali in all communities in Kenya. It is eaten as a main dish\nduring lunch or supper usually accompanied by a vegetable or protein dish.",
-      "ingredients": [
-        "whole maize flour",
-        "water"
-      ],
+      "ingredients": ["whole maize flour", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 25 minutes |",
         "Serves 4",
@@ -5086,11 +4604,7 @@
       "id": "15006",
       "title": "Maize & Finger \nMillet Flour Ugali",
       "about": "This variant of Ugali is prepared from a combination of finger millet and whole maize flour. It is common\namong the Kisii, Luhya, Kamba, Kalenjin and Luo communities. It is served as a main dish accompanied by\na vegetable or meat dish.",
-      "ingredients": [
-        "whole maize flour",
-        "finger millet flour",
-        "water"
-      ],
+      "ingredients": ["whole maize flour", "finger millet flour", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 30 minutes |",
         "Serves 4",
@@ -5125,12 +4639,7 @@
       "id": "15007",
       "title": "Maize, Red \nSorghum & Finger \nMillet Flour Ugali",
       "about": "This variant of Ugali is common as a traditional dish among the Kalenjin, the Luhya and Luo communities.\nIt is served as a main dish often accompanied by a vegetable dish or a meat/fish dish.",
-      "ingredients": [
-        "whole maize flour",
-        "red sorghum flour",
-        "finger millet",
-        "water"
-      ],
+      "ingredients": ["whole maize flour", "red sorghum flour", "finger millet", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 25 minutes |",
         "Serves 4",
@@ -5163,11 +4672,7 @@
       "id": "15008",
       "title": "Cassava & Red \nSorghum Flour Ugali",
       "about": "This variant of Ugali is common in Western part of Kenya particularly Kuria, Luhya and Luo communities.\nIt is eaten during lunch or dinner as a main dish and is usually accompanied by a vegetable and protein\ndish.",
-      "ingredients": [
-        "cassava flour",
-        "red sorghum flour",
-        "water"
-      ],
+      "ingredients": ["cassava flour", "red sorghum flour", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 25 minutes |",
         "Serves 4",
@@ -5197,10 +4702,7 @@
       "id": "15009",
       "title": "Refined Maize \nFlour Ugali",
       "about": "This type of Ugali is common across the entire country. It is made of refined maize flour, usually bought\nfrom retail shops. It is the predominant ugali in urban areas. It is eaten as a main dish accompanied by a\nprotein and /or green vegetables.",
-      "ingredients": [
-        "maize flour",
-        "water"
-      ],
+      "ingredients": ["maize flour", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 20 minutes |",
         "Serves 4",
@@ -5230,12 +4732,7 @@
       "id": "15010",
       "title": "Red Sorghum, Finger \nMillet & Refined Maize \nFlour Ugali",
       "about": "This type of Ugali is common in several communities including Luhya, Kalenjin and Luo. It is eaten as a\nmain dish accompanied by a traditional vegetable and/ or a protein dish.",
-      "ingredients": [
-        "red sorghum flour",
-        "finger millet flour",
-        "maize flour",
-        "water"
-      ],
+      "ingredients": ["red sorghum flour", "finger millet flour", "maize flour", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 20 minutes |",
         "Serves 4",
@@ -5265,10 +4762,7 @@
       "id": "15011",
       "title": "Cassava Flour\n Ugali",
       "about": "Cassava Ugali is prepared from dried cassava flour. It is common among the Luo community. It is usually\neaten as a main course with a vegetable dish accompaniment.",
-      "ingredients": [
-        "cassava flour",
-        "water"
-      ],
+      "ingredients": ["cassava flour", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 20 minutes |",
         "Serves 2",
@@ -5294,12 +4788,7 @@
       "id": "15051",
       "title": "Cassava, Finger Millet \n& Sorghum Flour \nUgali",
       "about": "This type of Ugali is typical among the Luhya, Kuria and Luo communities. It is eaten with a stew or a vegetable dish",
-      "ingredients": [
-        "cassava flour",
-        "finger millet flour",
-        "sorghum flour",
-        "water"
-      ],
+      "ingredients": ["cassava flour", "finger millet flour", "sorghum flour", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 30 minutes |",
         "Serves 4",
@@ -5328,14 +4817,7 @@
       "id": "15043",
       "title": "Gurdo, Marqa \n(Ugali in Sour Milk)",
       "about": "This is a unique type of Ugali that is common among the Burji community. It is prepared with teff and sor\u0002ghum flour in sour milk. It is eaten as a main dish and is served to the entire family",
-      "ingredients": [
-        "teff flour",
-        "red sorghum flour",
-        "fermented milk",
-        "salt",
-        "ghee",
-        "water"
-      ],
+      "ingredients": ["teff flour", "red sorghum flour", "fermented milk", "salt", "ghee", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 30 minutes |",
         "Serves 4",
@@ -5365,11 +4847,7 @@
       "id": "15065",
       "title": "Vinolo\n(Banana and Maize Flour Ugali)",
       "about": "This is a typical dish to the Mijikenda community. It is a unique type of Ugali that incorporates bananas. It\nis eaten as a main meal with an accompanying stew.",
-      "ingredients": [
-        "banana green",
-        "maize flour",
-        "water"
-      ],
+      "ingredients": ["banana green", "maize flour", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 40 minutes |",
         "Serves 4",
@@ -5403,10 +4881,7 @@
       "id": "15100",
       "title": "Finger Millet \nFlour Ugali",
       "about": "This type of Ugali is typical among the Kisii community. It is prepared using pure finger millet flour. It is\neaten together with a vegetable dish and a suitable meat or legume stew.",
-      "ingredients": [
-        "finger millet",
-        "water"
-      ],
+      "ingredients": ["finger millet", "water"],
       "directions": [
         "Preparation time 5 minutes | Cooking time 15 minutes |",
         "Serves 4",
@@ -5434,13 +4909,7 @@
       "id": "15019",
       "title": "White Chapati",
       "about": "This dish is common in many communities in Kenya and even more popular in the urban communities.\nThe white chapatti is made from refined wheat flour and is eaten with a meat, legume or vegetable stew.\nChapatti is often made during special occasions. It is served as an accompaniment during lunch or dinner\nand at times eaten with tea for breakfast.",
-      "ingredients": [
-        "wheat flour",
-        "water",
-        "sugar",
-        "salt",
-        "cooking oil"
-      ],
+      "ingredients": ["wheat flour", "water", "sugar", "salt", "cooking oil"],
       "directions": [
         "Preparation 30 minutes | Cooking 30 minutes |",
         "Makes 6",
@@ -5487,13 +4956,7 @@
       "id": "15020",
       "title": "Brown Chapati",
       "about": "Brown chapatti is another variant of chapatti and is common among many communities in Kenya. It is\npreferred for the health-conscious people due to the high fibre content as it is made of whole wheat flour.\nIt is served as an accompaniment during lunch, dinner or breakfast.",
-      "ingredients": [
-        "wheat flour",
-        "water",
-        "sugar,",
-        "salt",
-        "cooking oil"
-      ],
+      "ingredients": ["wheat flour", "water", "sugar,", "salt", "cooking oil"],
       "directions": [
         "Preparation 30 minutes | Cooking 30 minutes |",
         "Makes 7",
@@ -5534,13 +4997,7 @@
       "id": "15130",
       "title": "Roti \n(Indian Chapati)",
       "about": "Roti is the Indian version of chapatti. It is common among the Kenyan Indian community. Usually, Roti is\npart of an assortment of dishes that make up a platter for a main meal. It is eaten as an accompaniment.",
-      "ingredients": [
-        "wheat flour",
-        "salt",
-        "water",
-        "cooking oil",
-        "cow ghee"
-      ],
+      "ingredients": ["wheat flour", "salt", "water", "cooking oil", "cow ghee"],
       "directions": [
         "Preparation 3 hours | Cooking 21 minutes | Serves 4",
         "?Put wheat flour into a bowl, add salt and ghee.",
@@ -5615,13 +5072,7 @@
       "id": "15067",
       "title": "Vimumunya vya \nSukari\n (Sweetened Pumpkin & Coconut Milk)",
       "about": "This is a famous Swahili dessert that is served after meals. It is eaten by the entire family",
-      "ingredients": [
-        "pumpkin",
-        "cardamon",
-        "sugar",
-        "coconut milk",
-        "water"
-      ],
+      "ingredients": ["pumpkin", "cardamon", "sugar", "coconut milk", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 45 minutes |",
         "Serves 4",
@@ -5689,11 +5140,7 @@
       "id": "15132",
       "title": "Chaas\n(Diluted Yoghurt)",
       "about": "Chaas is simply diluted yoghurt with a pitch of salt. It is served after a main meal among the Kenyan Indian\ncommunity",
-      "ingredients": [
-        "natural yoghurt",
-        "water",
-        "salt"
-      ],
+      "ingredients": ["natural yoghurt", "water", "salt"],
       "directions": [
         "Preparation 5 minutes | Serves 2",
         "?Add natural yoghurt, all the water and salt and whisk",
@@ -5715,12 +5162,7 @@
       "id": "15063",
       "title": "Groundnut Sauce",
       "about": "This rich and smooth recipe is unique to the Luhya and Luo communities. It is usually fed to older infants\nand children",
-      "ingredients": [
-        "groundnut",
-        "salt",
-        "sour milk",
-        "water"
-      ],
+      "ingredients": ["groundnut", "salt", "sour milk", "water"],
       "directions": [
         "Preparation 5 minutes | Cooking 1 hour 40 minutes",
         "| Serves 4",

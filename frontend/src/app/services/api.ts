@@ -68,7 +68,7 @@ export const recipeAPI = {
     }
 
     return response.json();
-  }
+  },
 };
 
 export default recipeAPI;

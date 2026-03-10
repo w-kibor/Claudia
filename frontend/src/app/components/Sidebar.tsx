@@ -22,22 +22,22 @@ export function Sidebar({ onClose }: SidebarProps) {
         initial={{ width: '4rem' }}
         animate={{ width: isExpanded ? '16rem' : '4rem' }}
         transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="h-screen bg-sidebar border-r border-sidebar-border flex flex-col relative z-20 w-16"
+        className='h-screen bg-sidebar border-r border-sidebar-border flex flex-col relative z-20 w-16'
       >
         {/* Header */}
-        <div className="h-16 flex items-center justify-between px-3 md:px-4 border-b border-sidebar-border flex-shrink-0">
+        <div className='h-16 flex items-center justify-between px-3 md:px-4 border-b border-sidebar-border flex-shrink-0'>
           {isExpanded ? (
             <motion.h1
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="text-base md:text-lg tracking-tight text-sidebar-foreground truncate"
+              className='text-base md:text-lg tracking-tight text-sidebar-foreground truncate'
             >
               Claudia
             </motion.h1>
           ) : (
-            <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center flex-shrink-0">
-              <ChefHat className="w-5 h-5 text-accent-foreground" />
+            <div className='w-8 h-8 rounded-lg bg-accent flex items-center justify-center flex-shrink-0'>
+              <ChefHat className='w-5 h-5 text-accent-foreground' />
             </div>
           )}
           <button
@@ -45,28 +45,28 @@ export function Sidebar({ onClose }: SidebarProps) {
               setIsExpanded(!isExpanded);
               onClose?.();
             }}
-            className="w-8 h-8 rounded-lg hover:bg-sidebar-accent flex items-center justify-center transition-colors md:hidden flex-shrink-0"
+            className='w-8 h-8 rounded-lg hover:bg-sidebar-accent flex items-center justify-center transition-colors md:hidden flex-shrink-0'
           >
             {isExpanded ? (
-              <X className="w-4 h-4 text-sidebar-foreground" />
+              <X className='w-4 h-4 text-sidebar-foreground' />
             ) : (
-              <Menu className="w-4 h-4 text-sidebar-foreground" />
+              <Menu className='w-4 h-4 text-sidebar-foreground' />
             )}
           </button>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="w-8 h-8 rounded-lg hover:bg-sidebar-accent flex items-center justify-center transition-colors hidden md:flex flex-shrink-0"
+            className='w-8 h-8 rounded-lg hover:bg-sidebar-accent flex items-center justify-center transition-colors hidden md:flex flex-shrink-0'
           >
             {isExpanded ? (
-              <X className="w-4 h-4 text-sidebar-foreground" />
+              <X className='w-4 h-4 text-sidebar-foreground' />
             ) : (
-              <Menu className="w-4 h-4 text-sidebar-foreground" />
+              <Menu className='w-4 h-4 text-sidebar-foreground' />
             )}
           </button>
         </div>
 
         {/* Menu Items */}
-        <nav className="flex-1 p-2 md:p-3 space-y-1 overflow-y-auto">
+        <nav className='flex-1 p-2 md:p-3 space-y-1 overflow-y-auto'>
           {menuItems.map((item, index) => (
             <button
               key={index}
@@ -77,7 +77,7 @@ export function Sidebar({ onClose }: SidebarProps) {
                   : 'text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
               }`}
             >
-              <item.icon className="w-5 h-5 flex-shrink-0" />
+              <item.icon className='w-5 h-5 flex-shrink-0' />
               <AnimatePresence>
                 {isExpanded && (
                   <motion.span
@@ -85,7 +85,7 @@ export function Sidebar({ onClose }: SidebarProps) {
                     animate={{ opacity: 1, width: 'auto' }}
                     exit={{ opacity: 0, width: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="text-sm whitespace-nowrap overflow-hidden"
+                    className='text-sm whitespace-nowrap overflow-hidden'
                   >
                     {item.label}
                   </motion.span>

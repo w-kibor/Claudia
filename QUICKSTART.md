@@ -30,10 +30,6 @@ Visit: http://localhost:3000
 ```bash
 cd frontend
 
-# Create a new page
-mkdir -p src/app/recipes
-touch src/app/recipes/page.tsx
-
 # Create a new component
 mkdir -p src/components/kitchen/RecipeList
 touch src/components/kitchen/RecipeList/index.tsx
@@ -95,19 +91,6 @@ export default function RecipeList() {
 
 ## File Structure Best Practices
 
-### Pages (src/app)
-```
-src/app/
-├── page.tsx              # Home page
-├── layout.tsx            # Root layout
-├── demo/
-│   └── page.tsx          # Demo page
-├── recipes/
-│   ├── page.tsx          # Recipes list
-│   └── [id]/
-│       └── page.tsx      # Single recipe detail
-```
-
 ### Components (src/components)
 ```
 src/components/
@@ -140,13 +123,6 @@ npx shadcn-ui@latest add input
 npx shadcn-ui@latest add dropdown-menu
 ```
 
-### Create a New API Route
-
-```bash
-mkdir -p src/app/api/recipes
-echo 'export async function GET(req) { return Response.json({}); }' > src/app/api/recipes/route.ts
-```
-
 ### Deploy to Vercel
 
 ```bash
@@ -159,9 +135,7 @@ vercel
 
 ```
 # .env.local
-NEXT_PUBLIC_API_BASE_URL=http://localhost:3000/api
-DATABASE_TYPE=sqlite
-DATABASE_FILEPATH=./data/claudia.db
+VITE_API_BASE_URL=http://localhost:3000/api
 ANTHROPIC_API_KEY=your_key_here
 ```
 
@@ -178,12 +152,12 @@ npm run type-check  # TypeScript check
 
 - Use `console.log()` with component names: `console.log('[RecipeCard]', data)`
 - Check React DevTools browser extension
-- Use Next.js Debug mode: `DEBUG=* npm run dev`
 - Look at Network tab in browser DevTools for API calls
 
 ## Resources
 
-- [Next.js Docs](https://nextjs.org/docs)
+- [Vite Docs](https://vitejs.dev/)
+- [React Router](https://reactrouter.com/)
 - [Shadcn/ui Docs](https://ui.shadcn.com)
 - [Tailwind CSS](https://tailwindcss.com)
 - [Claude API](https://console.anthropic.com)

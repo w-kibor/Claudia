@@ -1,6 +1,6 @@
 # 🍳 Claudia - Recipe Intelligence Platform
 
-> A premium recipe platform inspired by Claude AI's Artifacts. Built with Next.js 15, featuring data-driven recipe management, AI integration, and a beautiful artifact-style interface.
+> A premium recipe platform inspired by Claude AI's Artifacts. Built with React and Vite, featuring data-driven recipe management, AI integration, and a beautiful artifact-style interface.
 
 ## 🎯 Project Overview
 
@@ -10,7 +10,7 @@
 - **Code-like Interface**: Ingredients and instructions with syntax highlighting
 - **Data Engineering**: ETL pipeline processes Kaggle datasets into clean data
 - **AI Integration**: Claude AI for recipe suggestions and variations
-- **Modern Stack**: Next.js 15, React, TypeScript, Tailwind CSS, Shadcn/ui
+- **Modern Stack**: React 18, Vite, React Router v7, TypeScript, Tailwind CSS, Shadcn/ui
 
 ## 📂 Project Structure
 
@@ -21,9 +21,8 @@ claudia/
 │   ├── clean/             # Processed JSON output
 │   └── scripts/           # Python ETL scripts
 │
-├── frontend/              # Next.js Application
+├── frontend/              # Vite React Application
 │   ├── src/
-│   │   ├── app/          # App Router pages
 │   │   ├── components/
 │   │   │   ├── ui/       # Base Shadcn components
 │   │   │   └── kitchen/  # Claudia-specific components
@@ -35,6 +34,10 @@ claudia/
 │   ├── public/           # Static assets
 │   └── package.json
 │
+├── backend/               # Express API API
+│   ├── server.js          # Main API Server
+│   └── package.json
+│
 └── docs/                 # Documentation
 ```
 
@@ -42,8 +45,8 @@ claudia/
 
 | Layer | Technology |
 |-------|-----------|
-| **Frontend** | Next.js 15, React 19, TypeScript |
-| **Styling** | Tailwind CSS, Shadcn/ui (Slate theme) |
+| **Frontend** | React 18, Vite, React Router v7, TypeScript |
+| **Styling** | Tailwind CSS v4, Shadcn/ui (Slate theme) |
 | **Icons** | Lucide React |
 | **State** | React Hooks, TanStack Query (planned) |
 | **Database** | Supabase (PostgreSQL) or MySQL |
@@ -210,7 +213,6 @@ npx shadcn-ui@latest add [component-name]
 1. Add types to `src/lib/types/recipe.ts`
 2. Create component in `src/components/kitchen/`
 3. Add hook in `src/hooks/` if needed
-4. Use in pages under `src/app/`
 
 ### Environment Variables
 
@@ -221,13 +223,13 @@ cp .env.example .env.local
 ```
 
 Update with your values:
-- `DATABASE_*`: Your database configuration
-- `ANTHROPIC_API_KEY`: Claude API key
-- `NEXT_PUBLIC_*`: Client-side variables
+- `VITE_API_BASE_URL`: Your API base URL
+- `ANTHROPIC_API_KEY`: Claude API key (moved to backend in production)
 
 ## 📚 Resources
 
-- [Next.js Documentation](https://nextjs.org/docs)
+- [Vite Documentation](https://vitejs.dev/)
+- [React Router](https://reactrouter.com/)
 - [Shadcn/ui Components](https://ui.shadcn.com)
 - [Tailwind CSS](https://tailwindcss.com)
 - [Claude API](https://console.anthropic.com)

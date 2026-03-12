@@ -1,6 +1,7 @@
-import { ChefHat, Database, MessageSquare, Menu, X } from 'lucide-react';
+import { ChefHat, Database, MessageSquare, Menu, X, Home as HomeIcon } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { NavLink } from 'react-router';
 
 interface SidebarProps {
   onClose?: () => void;
@@ -10,9 +11,10 @@ export function Sidebar({ onClose }: SidebarProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const menuItems = [
-    { icon: ChefHat, label: 'My Kitchen', active: true },
-    { icon: Database, label: 'Kaggle Database', active: false },
-    { icon: MessageSquare, label: 'AI Chat', active: false },
+    { icon: HomeIcon, label: 'Home', path: '/' },
+    { icon: Database, label: 'Recipe Collection', path: '/recipes' },
+    { icon: ChefHat, label: 'My Kitchen', path: '/my-kitchen' },
+    { icon: MessageSquare, label: 'Ask AI', path: '/ask-ai' },
   ];
 
   return (
@@ -68,11 +70,13 @@ export function Sidebar({ onClose }: SidebarProps) {
         {/* Menu Items */}
         <nav className='flex-1 p-2 md:p-3 space-y-1 overflow-y-auto'>
           {menuItems.map((item, index) => (
-            <button
+            <NavLink
               key={index}
+              to={item.path}
               onClick={onClose}
-              className={`w-full flex items-center gap-3 px-2 md:px-3 py-2 md:py-2.5 rounded-lg transition-colors ${
-                item.active
+              end={item.path === '/'}
+              className={({ isActive }: { isActive: boolean }) => `w-full flex items-center gap-3 px-2 md:px-3 py-2 md:py-2.5 rounded-lg transition-colors ${
+                isActive
                   ? 'bg-sidebar-accent text-sidebar-accent-foreground'
                   : 'text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
               }`}
@@ -91,7 +95,7 @@ export function Sidebar({ onClose }: SidebarProps) {
                   </motion.span>
                 )}
               </AnimatePresence>
-            </button>
+            </NavLink>
           ))}
         </nav>
       </motion.aside>

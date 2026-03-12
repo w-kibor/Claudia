@@ -1,5 +1,6 @@
 import * as Tabs from '@radix-ui/react-tabs';
 import { ChefHat, Bookmark, Calendar } from 'lucide-react';
+import { KitchenStats } from '../components/KitchenStats';
 
 export default function MyKitchen() {
   return (
@@ -7,6 +8,10 @@ export default function MyKitchen() {
       <div className='mb-8'>
         <h1 className='text-3xl font-bold tracking-tight mb-2'>My Kitchen</h1>
         <p className='text-muted-foreground text-lg'>Manage your personal recipes, saved favorites, and meal plans.</p>
+      </div>
+
+      <div className='mb-8'>
+        <KitchenStats />
       </div>
 
       <Tabs.Root defaultValue='own-recipes' className='flex flex-col w-full'>

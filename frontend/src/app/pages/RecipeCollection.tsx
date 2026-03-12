@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Masonry from 'react-responsive-masonry';
 import { RecipeCard, Recipe } from '../components/RecipeCard';
 import { RecipeDrawer } from '../components/RecipeDrawer';
-import { KitchenStats } from '../components/KitchenStats';
 import { FloatingActionButton } from '../components/FloatingActionButton';
 import { X } from 'lucide-react';
 import recipeAPI from '../services/api';
@@ -60,11 +59,6 @@ export default function RecipeCollection() {
       <div className='mb-6'>
         <h2 className='text-xl md:text-2xl font-semibold mb-2'>Dataset Recipes</h2>
         <p className='text-sm text-muted-foreground mb-4'>Browse the complete collection of recipes</p>
-      </div>
-
-      {/* Kitchen Stats */}
-      <div className='mb-6'>
-        <KitchenStats />
       </div>
 
       {/* Loading State */}

@@ -10,6 +10,7 @@
 - **Code-like Interface**: Ingredients and instructions with syntax highlighting
 - **Data Engineering**: ETL pipeline processes Kaggle datasets into clean data
 - **AI Integration**: Claude AI for recipe suggestions and variations
+- **Personal Kitchen Storage**: MongoDB keeps uploaded recipes, fridge inventory, and recipe photos available across sessions
 - **Modern Stack**: React 18, Vite, React Router v7, TypeScript, Tailwind CSS, Shadcn/ui
 
 ## 📂 Project Structure
@@ -49,7 +50,7 @@ claudia/
 | **Styling** | Tailwind CSS v4, Shadcn/ui (Slate theme) |
 | **Icons** | Lucide React |
 | **State** | React Hooks, TanStack Query (planned) |
-| **Database** | Supabase (PostgreSQL) or MySQL |
+| **Database** | MongoDB |
 | **Data Pipeline** | Python (pandas, CSV processing) |
 | **AI** | Claude API (Anthropic) |
 
@@ -60,21 +61,34 @@ claudia/
 - npm or yarn
 - Python 3.8+ (for ETL pipeline)
 
-### Setup Frontend
+### Start The Full Stack
 
 ```bash
-cd frontend
-npm install
-
-# Create environment file
-cp .env.example .env.local
-# Update .env.local with your configuration
+docker compose up --build
 ```
 
-### Running the Development Server
+This launches:
+- frontend at `http://localhost:3000`
+- backend at `http://localhost:3001`
+- MongoDB at `mongodb://localhost:27017/claudia`
+
+### Manual Setup
 
 ```bash
+# Start MongoDB first
+docker run --name claudia-mongo -p 27017:27017 -d mongo:7
+
+# Backend
+cd backend
+npm install
+export MONGODB_URI=mongodb://127.0.0.1:27017/claudia
+export DEFAULT_PROFILE_ID=demo-user
+npm run dev
+
+# Frontend (new terminal)
 cd frontend
+npm install
+export VITE_API_BASE_URL=http://localhost:3001
 npm run dev
 ```
 
@@ -127,20 +141,17 @@ import { RecipeCard } from "@/components/kitchen/RecipeCard";
 
 ### Database
 
-Supports multiple database backends:
+MongoDB stores user-owned data:
 
-```typescript
-// SQLite (default, local development)
-DATABASE_TYPE=sqlite
+- uploaded recipes and their metadata
+- recipe photos uploaded from the My Kitchen page
+- fridge, freezer, and pantry inventory items
+- per-profile kitchen summary counts used by the UI
 
-// MySQL
-DATABASE_TYPE=mysql
-DATABASE_HOST=localhost
-DATABASE_PORT=3306
+Default local connection string:
 
-// PostgreSQL (Supabase)
-DATABASE_TYPE=postgres
-DATABASE_HOST=your-db.supabase.co
+```bash
+MONGODB_URI=mongodb://127.0.0.1:27017/claudia
 ```
 
 ### ETL Pipeline
@@ -223,8 +234,9 @@ cp .env.example .env.local
 ```
 
 Update with your values:
-- `VITE_API_BASE_URL`: Your API base URL
-- `ANTHROPIC_API_KEY`: Claude API key (moved to backend in production)
+- `VITE_API_BASE_URL`: Your API base URL, for example `http://localhost:3001`
+- `MONGODB_URI`: MongoDB connection string for persisted kitchen data
+- `GEMINI_API_KEY`: Gemini API key for the AI sous-chef endpoint
 
 ## 📚 Resources
 

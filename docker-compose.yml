@@ -1,4 +1,13 @@
 services:
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=claudia
+    volumes:
+      - mongodb_data:/data/db
+
   frontend:
     build:
       context: ./frontend
@@ -26,3 +35,10 @@ services:
     environment:
       - PORT=3001
       - NODE_ENV=development
+      - MONGODB_URI=mongodb://mongo:27017/claudia
+      - DEFAULT_PROFILE_ID=demo-user
+    depends_on:
+      - mongo
+
+volumes:
+  mongodb_data:

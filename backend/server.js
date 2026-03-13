@@ -3,23 +3,152 @@ import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import crypto from 'crypto';
+import multer from 'multer';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import dotenv from 'dotenv';
+import { connectToDatabase, getDatabaseUri, isDatabaseConnected } from './db.js';
+import { InventoryItem } from './models/InventoryItem.js';
+import { UserRecipe } from './models/UserRecipe.js';
 
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const uploadDirectory = path.join(__dirname, 'uploads');
+
+fs.mkdirSync(uploadDirectory, { recursive: true });
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const DEFAULT_PROFILE_ID = process.env.DEFAULT_PROFILE_ID || 'demo-user';
 
 // Initialize Gemini client (requires GEMINI_API_KEY in .env)
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'dummy_key');
 
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, uploadDirectory);
+  },
+  filename: (req, file, callback) => {
+    const extension = path.extname(file.originalname || '').toLowerCase();
+    callback(null, `${Date.now()}-${crypto.randomUUID()}${extension}`);
+  },
+});
+
+const upload = multer({
+  storage,
+  limits: {
+    fileSize: 5 * 1024 * 1024,
+  },
+  fileFilter: (req, file, callback) => {
+    if (file.mimetype?.startsWith('image/')) {
+      callback(null, true);
+      return;
+    }
+
+    callback(new Error('Only image uploads are supported.'));
+  },
+});
+
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use('/uploads', express.static(uploadDirectory));
+
+function buildImageUrl(req, imagePath, fallbackSeed = 'food') {
+  if (imagePath) {
+    return `${req.protocol}://${req.get('host')}${imagePath}`;
+  }
+
+  return `https://loremflickr.com/800/600/food,recipe?lock=${fallbackSeed}`;
+}
+
+function parseListField(value) {
+  if (!value) {
+    return [];
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((item) => `${item}`.trim()).filter(Boolean);
+  }
+
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+
+    if (!trimmed) {
+      return [];
+    }
+
+    try {
+      const parsed = JSON.parse(trimmed);
+      if (Array.isArray(parsed)) {
+        return parsed.map((item) => `${item}`.trim()).filter(Boolean);
+      }
+    } catch {
+      // Fall through to newline parsing.
+    }
+
+    return trimmed
+      .split(/\r?\n|,/)
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+
+  return [];
+}
+
+function getProfileId(req) {
+  return req.query.profileId || req.body.profileId || DEFAULT_PROFILE_ID;
+}
+
+function formatUserRecipe(recipe, req) {
+  return {
+    id: recipe._id.toString(),
+    name: recipe.title,
+    image: buildImageUrl(req, recipe.imagePath, recipe._id.toString()),
+    prepTime: recipe.prepTime,
+    difficulty: recipe.difficulty,
+    cuisine: recipe.cuisine,
+    ingredients: recipe.ingredients,
+    directions: recipe.directions,
+    instructions: recipe.directions,
+    notes: recipe.notes,
+    source: 'user',
+    createdAt: recipe.createdAt,
+  };
+}
+
+function formatInventoryItem(item, req) {
+  return {
+    id: item._id.toString(),
+    name: item.name,
+    category: item.category,
+    quantity: item.quantity,
+    unit: item.unit,
+    location: item.location,
+    status: item.status,
+    notes: item.notes,
+    expiresAt: item.expiresAt,
+    image: buildImageUrl(req, item.imagePath, item._id.toString()),
+    createdAt: item.createdAt,
+  };
+}
+
+async function ensureDatabaseConnection(req, res) {
+  try {
+    await connectToDatabase();
+    return true;
+  } catch (error) {
+    console.error('MongoDB connection error:', error.message);
+    res.status(503).json({
+      success: false,
+      error: 'MongoDB is unavailable. Start the database and try again.',
+      details: error.message,
+    });
+    return false;
+  }
+}
 
 // Load recipes data
 let recipes = [];
@@ -64,6 +193,16 @@ try {
 
 // Routes
 
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    database: {
+      connected: isDatabaseConnected(),
+      uri: getDatabaseUri(),
+    },
+  });
+});
+
 // Health check
 app.get('/', (req, res) => {
   res.json({
@@ -75,8 +214,156 @@ app.get('/', (req, res) => {
       search: '/api/recipes/search?q=query',
       cuisines: '/api/cuisines',
       stats: '/api/stats',
+      ownRecipes: '/api/user/recipes',
+      inventory: '/api/user/inventory',
+      kitchenSummary: '/api/user/summary',
     },
   });
+});
+
+app.get('/api/user/summary', async (req, res) => {
+  if (!(await ensureDatabaseConnection(req, res))) {
+    return;
+  }
+
+  try {
+    const profileId = getProfileId(req);
+    const [recipeCount, inventoryItems] = await Promise.all([
+      UserRecipe.countDocuments({ profileId }),
+      InventoryItem.find({ profileId }).lean(),
+    ]);
+
+    const onHand = inventoryItems.filter((item) => item.status !== 'needed').length;
+    const missing = inventoryItems.filter((item) => item.status === 'needed').length;
+
+    res.json({
+      success: true,
+      data: {
+        profileId,
+        ownRecipes: recipeCount,
+        inventory: {
+          onHand,
+          missing,
+          total: inventoryItems.length,
+        },
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.get('/api/user/recipes', async (req, res) => {
+  if (!(await ensureDatabaseConnection(req, res))) {
+    return;
+  }
+
+  try {
+    const profileId = getProfileId(req);
+    const userRecipes = await UserRecipe.find({ profileId }).sort({ createdAt: -1 });
+
+    res.json({
+      success: true,
+      data: userRecipes.map((recipe) => formatUserRecipe(recipe, req)),
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.post('/api/user/recipes', upload.single('image'), async (req, res) => {
+  if (!(await ensureDatabaseConnection(req, res))) {
+    return;
+  }
+
+  try {
+    const profileId = getProfileId(req);
+    const title = req.body.title?.trim();
+
+    if (!title) {
+      return res.status(400).json({
+        success: false,
+        error: 'Recipe title is required.',
+      });
+    }
+
+    const recipe = await UserRecipe.create({
+      profileId,
+      title,
+      cuisine: req.body.cuisine?.trim() || 'Homestyle',
+      prepTime: req.body.prepTime?.trim() || '20 mins',
+      difficulty: req.body.difficulty || 'Medium',
+      ingredients: parseListField(req.body.ingredients),
+      directions: parseListField(req.body.directions),
+      notes: req.body.notes?.trim() || '',
+      imagePath: req.file ? `/uploads/${req.file.filename}` : null,
+    });
+
+    res.status(201).json({
+      success: true,
+      data: formatUserRecipe(recipe, req),
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.get('/api/user/inventory', async (req, res) => {
+  if (!(await ensureDatabaseConnection(req, res))) {
+    return;
+  }
+
+  try {
+    const profileId = getProfileId(req);
+    const inventoryItems = await InventoryItem.find({ profileId }).sort({ createdAt: -1 });
+
+    res.json({
+      success: true,
+      data: inventoryItems.map((item) => formatInventoryItem(item, req)),
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.post('/api/user/inventory', upload.single('image'), async (req, res) => {
+  if (!(await ensureDatabaseConnection(req, res))) {
+    return;
+  }
+
+  try {
+    const profileId = getProfileId(req);
+    const name = req.body.name?.trim();
+
+    if (!name) {
+      return res.status(400).json({
+        success: false,
+        error: 'Inventory item name is required.',
+      });
+    }
+
+    const quantity = Number.parseFloat(req.body.quantity || '1');
+
+    const inventoryItem = await InventoryItem.create({
+      profileId,
+      name,
+      category: req.body.category?.trim() || 'General',
+      quantity: Number.isFinite(quantity) ? quantity : 1,
+      unit: req.body.unit?.trim() || 'item',
+      location: req.body.location || 'Fridge',
+      status: req.body.status || 'available',
+      notes: req.body.notes?.trim() || '',
+      expiresAt: req.body.expiresAt ? new Date(req.body.expiresAt) : null,
+      imagePath: req.file ? `/uploads/${req.file.filename}` : null,
+    });
+
+    res.status(201).json({
+      success: true,
+      data: formatInventoryItem(inventoryItem, req),
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
 });
 
 // Get all recipes (with pagination)
@@ -98,27 +385,6 @@ app.get('/api/recipes', (req, res) => {
         totalRecipes: recipes.length,
         recipesPerPage: limit,
       },
-    });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
-
-// Get recipe by ID
-app.get('/api/recipes/:id', (req, res) => {
-  try {
-    const recipe = recipes.find((r) => r.id === req.params.id);
-
-    if (!recipe) {
-      return res.status(404).json({
-        success: false,
-        error: 'Recipe not found',
-      });
-    }
-
-    res.json({
-      success: true,
-      data: recipe,
     });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -148,6 +414,27 @@ app.get('/api/recipes/search', (req, res) => {
       success: true,
       data: results,
       count: results.length,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Get recipe by ID
+app.get('/api/recipes/:id', (req, res) => {
+  try {
+    const recipe = recipes.find((r) => r.id === req.params.id);
+
+    if (!recipe) {
+      return res.status(404).json({
+        success: false,
+        error: 'Recipe not found',
+      });
+    }
+
+    res.json({
+      success: true,
+      data: recipe,
     });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -295,16 +582,45 @@ Guidelines:
   }
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`\n🚀 Server running on http://localhost:${PORT}`);
-  console.log(`📊 Serving ${recipes.length} recipes`);
-  console.log(`\n📖 API Documentation:`);
-  console.log(`   GET  /api/recipes           - Get all recipes (paginated)`);
-  console.log(`   GET  /api/recipes/:id       - Get recipe by ID`);
-  console.log(`   GET  /api/recipes/search    - Search recipes (?q=query)`);
-  console.log(`   GET  /api/cuisines          - Get all cuisines`);
-  console.log(`   GET  /api/recipes/cuisine/:cuisine - Filter by cuisine`);
-  console.log(`   GET  /api/recipes/difficulty/:level - Filter by difficulty`);
-  console.log(`   GET  /api/stats             - Get statistics\n`);
+app.use((error, req, res, next) => {
+  if (error instanceof multer.MulterError) {
+    res.status(400).json({ success: false, error: error.message });
+    return;
+  }
+
+  if (error) {
+    res.status(400).json({ success: false, error: error.message });
+    return;
+  }
+
+  next();
 });
+
+let serverInstance;
+
+export async function startServer() {
+  if (serverInstance) {
+    return serverInstance;
+  }
+
+  try {
+    await connectToDatabase();
+    console.log(`✅ MongoDB connected: ${getDatabaseUri()}`);
+  } catch (error) {
+    console.warn(`⚠️ MongoDB unavailable, starting API without persistence: ${error.message}`);
+  }
+
+  serverInstance = app.listen(PORT, () => {
+    console.log(`\n🚀 Server running on http://localhost:${PORT}`);
+    console.log(`📊 Serving ${recipes.length} dataset recipes`);
+    console.log(`📦 MongoDB-backed user recipes and kitchen inventory enabled when the database is available`);
+  });
+
+  return serverInstance;
+}
+
+if (process.env.NODE_ENV !== 'test') {
+  startServer();
+}
+
+export { app };

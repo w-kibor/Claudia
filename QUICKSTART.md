@@ -2,22 +2,38 @@
  * Quick Start Guide for Claudia Development
  */
 
-# 🚀 Claudia - Quick Start
+# Claudia - Quick Start
 
 ## Initial Setup
 
 ```bash
-# 1. Navigate to frontend
+# 1. Start the full stack, including MongoDB
+docker compose up --build
+```
+
+This starts:
+- frontend on http://localhost:3000
+- backend on http://localhost:3001
+- MongoDB on mongodb://localhost:27017/claudia
+
+## Manual Setup
+
+```bash
+# 1. Start MongoDB locally or with Docker
+docker run --name claudia-mongo -p 27017:27017 -d mongo:7
+
+# 2. Install backend dependencies
+cd backend
+npm install
+export MONGODB_URI=mongodb://127.0.0.1:27017/claudia
+export DEFAULT_PROFILE_ID=demo-user
+npm run dev
+
+# 3. In a second terminal, install frontend dependencies
 cd frontend
 
-# 2. Install dependencies
 npm install
-
-# 3. Set up environment
-cp .env.example .env.local
-# Edit .env.local with your settings
-
-# 4. Start development server
+export VITE_API_BASE_URL=http://localhost:3001
 npm run dev
 ```
 
@@ -134,9 +150,13 @@ vercel
 ## Environment Variables Needed
 
 ```
-# .env.local
-VITE_API_BASE_URL=http://localhost:3000/api
-ANTHROPIC_API_KEY=your_key_here
+# Frontend
+VITE_API_BASE_URL=http://localhost:3001
+
+# Backend
+MONGODB_URI=mongodb://127.0.0.1:27017/claudia
+DEFAULT_PROFILE_ID=demo-user
+GEMINI_API_KEY=your_key_here
 ```
 
 ## Useful npm Scripts

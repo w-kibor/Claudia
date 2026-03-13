@@ -1,6 +1,7 @@
 # Data files - too large for GitHub
 data-pipeline/raw/**
 data-pipeline/clean/**
+backend/uploads/**
 
 # Node.js & Frontend
 node_modules/

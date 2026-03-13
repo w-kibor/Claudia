@@ -12,7 +12,8 @@ describe('Server API Tests', () => {
   it('GET /api/recipes should return an array of recipes', async () => {
     const res = await request(app).get('/api/recipes');
     expect(res.statusCode).toEqual(200);
-    expect(res.body).toHaveProperty('recipes');
-    expect(Array.isArray(res.body.recipes)).toBeTruthy();
+    expect(res.body).toHaveProperty('success', true);
+    expect(res.body).toHaveProperty('data');
+    expect(Array.isArray(res.body.data)).toBeTruthy();
   });
 });

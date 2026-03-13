@@ -1,14 +1,21 @@
 import { Package, ShoppingCart } from 'lucide-react';
 import { motion } from 'motion/react';
+import type { InventorySummary } from '../services/api';
 
-export function KitchenStats() {
-  const stats = {
-    onHand: 24,
-    missing: 6,
-    total: 30,
-  };
+interface KitchenStatsProps {
+  stats?: InventorySummary;
+  loading?: boolean;
+}
 
-  const percentage = (stats.onHand / stats.total) * 100;
+const defaultStats: InventorySummary = {
+  onHand: 0,
+  missing: 0,
+  total: 0,
+};
+
+export function KitchenStats({ stats = defaultStats, loading = false }: KitchenStatsProps) {
+
+  const percentage = stats.total > 0 ? (stats.onHand / stats.total) * 100 : 0;
 
   return (
     <motion.div
@@ -25,7 +32,7 @@ export function KitchenStats() {
             <Package className='w-5 h-5 text-accent' />
           </div>
           <div className='min-w-0'>
-            <div className='text-xl md:text-2xl font-medium'>{stats.onHand}</div>
+            <div className='text-xl md:text-2xl font-medium'>{loading ? '...' : stats.onHand}</div>
             <div className='text-xs text-muted-foreground'>On Hand</div>
           </div>
         </div>
@@ -35,7 +42,7 @@ export function KitchenStats() {
             <ShoppingCart className='w-5 h-5 text-destructive' />
           </div>
           <div className='min-w-0'>
-            <div className='text-xl md:text-2xl font-medium'>{stats.missing}</div>
+            <div className='text-xl md:text-2xl font-medium'>{loading ? '...' : stats.missing}</div>
             <div className='text-xs text-muted-foreground'>Missing</div>
           </div>
         </div>
@@ -45,12 +52,12 @@ export function KitchenStats() {
       <div className='space-y-2'>
         <div className='flex justify-between text-xs text-muted-foreground'>
           <span>Completion</span>
-          <span>{Math.round(percentage)}%</span>
+          <span>{loading ? '...' : `${Math.round(percentage)}%`}</span>
         </div>
         <div className='h-2 bg-muted rounded-full overflow-hidden'>
           <motion.div
             initial={{ width: 0 }}
-            animate={{ width: `${percentage}%` }}
+            animate={{ width: loading ? '12%' : `${percentage}%` }}
             transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
             className='h-full bg-accent'
           />

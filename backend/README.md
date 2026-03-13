@@ -10,12 +10,18 @@ Express.js REST API serving recipe data for the Claudia platform.
 - ✅ Filter by cuisine and difficulty
 - ✅ Pagination support
 - ✅ Statistics endpoint
+- ✅ MongoDB persistence for user recipes and kitchen inventory
+- ✅ Image upload support for recipes and inventory items
 
 ## Setup
 
 ```bash
 # Install dependencies
 npm install
+
+# Optional local environment
+export MONGODB_URI=mongodb://127.0.0.1:27017/claudia
+export DEFAULT_PROFILE_ID=demo-user
 
 # Start server
 npm start
@@ -43,6 +49,11 @@ http://localhost:3001
 - `GET /api/recipes/cuisine/:cuisine` - Filter by cuisine
 - `GET /api/recipes/difficulty/:level` - Filter by difficulty (Easy/Medium/Hard)
 - `GET /api/stats` - Get statistics
+- `GET /api/user/summary` - Get MongoDB-backed kitchen summary
+- `GET /api/user/recipes` - List uploaded recipes for the current profile
+- `POST /api/user/recipes` - Upload a recipe with optional image
+- `GET /api/user/inventory` - List fridge and pantry inventory
+- `POST /api/user/inventory` - Add an inventory item with optional image
 
 ### Response Format
 
@@ -61,7 +72,9 @@ http://localhost:3001
 
 ## Data Source
 
-Loads from: `../data-pipeline/clean/recipes_sample.json`
+- Dataset recipes load from `backend/data/recipes_small.json`
+- User recipes and inventory persist in MongoDB
+- Uploaded images are served from `backend/uploads/`
 
 ## Port
 

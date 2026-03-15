@@ -215,7 +215,11 @@ app.get('/', (req, res) => {
       cuisines: '/api/cuisines',
       stats: '/api/stats',
       ownRecipes: '/api/user/recipes',
+      updateRecipe: 'PATCH /api/user/recipes/:id',
+      deleteRecipe: 'DELETE /api/user/recipes/:id',
       inventory: '/api/user/inventory',
+      updateInventory: 'PATCH /api/user/inventory/:id',
+      deleteInventory: 'DELETE /api/user/inventory/:id',
       kitchenSummary: '/api/user/summary',
     },
   });
@@ -308,6 +312,56 @@ app.post('/api/user/recipes', upload.single('image'), async (req, res) => {
   }
 });
 
+app.patch('/api/user/recipes/:id', upload.single('image'), async (req, res) => {
+  if (!(await ensureDatabaseConnection(req, res))) {
+    return;
+  }
+
+  try {
+    const profileId = getProfileId(req);
+    const recipe = await UserRecipe.findOne({ _id: req.params.id, profileId });
+
+    if (!recipe) {
+      return res.status(404).json({ success: false, error: 'Recipe not found.' });
+    }
+
+    if (req.body.title !== undefined) recipe.title = req.body.title.trim();
+    if (req.body.cuisine !== undefined) recipe.cuisine = req.body.cuisine.trim();
+    if (req.body.prepTime !== undefined) recipe.prepTime = req.body.prepTime.trim();
+    if (req.body.difficulty !== undefined) recipe.difficulty = req.body.difficulty;
+    if (req.body.notes !== undefined) recipe.notes = req.body.notes.trim();
+    if (req.body.ingredients !== undefined) recipe.ingredients = parseListField(req.body.ingredients);
+    if (req.body.directions !== undefined) recipe.directions = parseListField(req.body.directions);
+    if (req.file) {
+      recipe.imagePath = `/uploads/${req.file.filename}`;
+    }
+
+    await recipe.save();
+    res.json({ success: true, data: formatUserRecipe(recipe, req) });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.delete('/api/user/recipes/:id', async (req, res) => {
+  if (!(await ensureDatabaseConnection(req, res))) {
+    return;
+  }
+
+  try {
+    const profileId = getProfileId(req);
+    const recipe = await UserRecipe.findOneAndDelete({ _id: req.params.id, profileId });
+
+    if (!recipe) {
+      return res.status(404).json({ success: false, error: 'Recipe not found.' });
+    }
+
+    res.json({ success: true, data: { id: req.params.id } });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 app.get('/api/user/inventory', async (req, res) => {
   if (!(await ensureDatabaseConnection(req, res))) {
     return;
@@ -361,6 +415,62 @@ app.post('/api/user/inventory', upload.single('image'), async (req, res) => {
       success: true,
       data: formatInventoryItem(inventoryItem, req),
     });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.patch('/api/user/inventory/:id', upload.single('image'), async (req, res) => {
+  if (!(await ensureDatabaseConnection(req, res))) {
+    return;
+  }
+
+  try {
+    const profileId = getProfileId(req);
+    const item = await InventoryItem.findOne({ _id: req.params.id, profileId });
+
+    if (!item) {
+      return res.status(404).json({ success: false, error: 'Inventory item not found.' });
+    }
+
+    if (req.body.name !== undefined) item.name = req.body.name.trim();
+    if (req.body.category !== undefined) item.category = req.body.category.trim();
+    if (req.body.unit !== undefined) item.unit = req.body.unit.trim();
+    if (req.body.notes !== undefined) item.notes = req.body.notes.trim();
+    if (req.body.location !== undefined) item.location = req.body.location;
+    if (req.body.status !== undefined) item.status = req.body.status;
+    if (req.body.quantity !== undefined) {
+      const qty = Number.parseFloat(req.body.quantity);
+      item.quantity = Number.isFinite(qty) ? qty : item.quantity;
+    }
+    if (req.body.expiresAt !== undefined) {
+      item.expiresAt = req.body.expiresAt ? new Date(req.body.expiresAt) : null;
+    }
+    if (req.file) {
+      item.imagePath = `/uploads/${req.file.filename}`;
+    }
+
+    await item.save();
+    res.json({ success: true, data: formatInventoryItem(item, req) });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+app.delete('/api/user/inventory/:id', async (req, res) => {
+  if (!(await ensureDatabaseConnection(req, res))) {
+    return;
+  }
+
+  try {
+    const profileId = getProfileId(req);
+    const item = await InventoryItem.findOneAndDelete({ _id: req.params.id, profileId });
+
+    if (!item) {
+      return res.status(404).json({ success: false, error: 'Inventory item not found.' });
+    }
+
+    res.json({ success: true, data: { id: req.params.id } });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }

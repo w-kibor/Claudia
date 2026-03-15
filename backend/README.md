@@ -52,8 +52,12 @@ http://localhost:3001
 - `GET /api/user/summary` - Get MongoDB-backed kitchen summary
 - `GET /api/user/recipes` - List uploaded recipes for the current profile
 - `POST /api/user/recipes` - Upload a recipe with optional image
+- `PATCH /api/user/recipes/:id` - Update an uploaded recipe
+- `DELETE /api/user/recipes/:id` - Delete an uploaded recipe
 - `GET /api/user/inventory` - List fridge and pantry inventory
 - `POST /api/user/inventory` - Add an inventory item with optional image
+- `PATCH /api/user/inventory/:id` - Update an inventory item
+- `DELETE /api/user/inventory/:id` - Delete an inventory item
 
 ### Response Format
 

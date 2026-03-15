@@ -1,6 +1,6 @@
 import * as Tabs from '@radix-ui/react-tabs';
 import { useEffect, useState } from 'react';
-import { ChefHat, Bookmark, Package, Plus, RefreshCw } from 'lucide-react';
+import { ChefHat, Bookmark, Package, Plus, RefreshCw, Trash2 } from 'lucide-react';
 import { KitchenStats } from '../components/KitchenStats';
 import { RecipeCard, type Recipe } from '../components/RecipeCard';
 import { RecipeDrawer } from '../components/RecipeDrawer';
@@ -56,6 +56,8 @@ export default function MyKitchen() {
   const [inventoryNotice, setInventoryNotice] = useState<string | null>(null);
   const [recipeSubmitting, setRecipeSubmitting] = useState(false);
   const [inventorySubmitting, setInventorySubmitting] = useState(false);
+  const [deletingRecipeId, setDeletingRecipeId] = useState<string | null>(null);
+  const [deletingInventoryId, setDeletingInventoryId] = useState<string | null>(null);
 
   const loadKitchenData = async (showLoader = true) => {
     try {
@@ -126,6 +128,53 @@ export default function MyKitchen() {
       );
     } finally {
       setInventorySubmitting(false);
+    }
+  };
+
+  const handleDeleteRecipe = async (recipeId: string, recipeName: string) => {
+    const shouldDelete = window.confirm(`Delete "${recipeName}" from your recipe collection?`);
+    if (!shouldDelete) {
+      return;
+    }
+
+    try {
+      setDeletingRecipeId(recipeId);
+      setRecipeNotice(null);
+      await recipeAPI.deleteUserRecipe(recipeId);
+      setOwnRecipes((current) => current.filter((recipe) => recipe.id !== recipeId));
+      if (selectedRecipe?.id === recipeId) {
+        setSelectedRecipe(null);
+      }
+      setRecipeNotice(`Deleted ${recipeName} from your recipe collection.`);
+      await loadKitchenData(false);
+    } catch (deleteError) {
+      setRecipeNotice(
+        deleteError instanceof Error ? deleteError.message : 'Failed to delete recipe',
+      );
+    } finally {
+      setDeletingRecipeId(null);
+    }
+  };
+
+  const handleDeleteInventoryItem = async (itemId: string, itemName: string) => {
+    const shouldDelete = window.confirm(`Delete "${itemName}" from your inventory?`);
+    if (!shouldDelete) {
+      return;
+    }
+
+    try {
+      setDeletingInventoryId(itemId);
+      setInventoryNotice(null);
+      await recipeAPI.deleteInventoryItem(itemId);
+      setInventoryItems((current) => current.filter((item) => item.id !== itemId));
+      setInventoryNotice(`Deleted ${itemName} from your kitchen inventory.`);
+      await loadKitchenData(false);
+    } catch (deleteError) {
+      setInventoryNotice(
+        deleteError instanceof Error ? deleteError.message : 'Failed to delete inventory item',
+      );
+    } finally {
+      setDeletingInventoryId(null);
     }
   };
 
@@ -272,11 +321,22 @@ export default function MyKitchen() {
               ) : (
                 <div className='grid gap-5 sm:grid-cols-2 2xl:grid-cols-3'>
                   {ownRecipes.map((recipe) => (
-                    <RecipeCard
-                      key={recipe.id}
-                      recipe={recipe}
-                      onClick={() => setSelectedRecipe(recipe)}
-                    />
+                    <div key={recipe.id} className='relative'>
+                      <RecipeCard recipe={recipe} onClick={() => setSelectedRecipe(recipe)} />
+                      <button
+                        type='button'
+                        onClick={(event) => {
+                          event.preventDefault();
+                          event.stopPropagation();
+                          void handleDeleteRecipe(recipe.id, recipe.name);
+                        }}
+                        disabled={deletingRecipeId === recipe.id}
+                        className='absolute left-3 top-3 inline-flex items-center gap-1 rounded-md border border-border bg-background/90 px-2 py-1 text-xs text-foreground shadow-sm hover:bg-background disabled:opacity-60'
+                      >
+                        <Trash2 className='h-3.5 w-3.5' />
+                        {deletingRecipeId === recipe.id ? 'Deleting...' : 'Delete'}
+                      </button>
+                    </div>
                   ))}
                 </div>
               )}
@@ -389,9 +449,20 @@ export default function MyKitchen() {
                               <h4 className='font-semibold'>{item.name}</h4>
                               <p className='text-sm text-muted-foreground'>{item.quantity} {item.unit} • {item.location}</p>
                             </div>
-                            <span className='rounded-full bg-accent/10 px-2.5 py-1 text-xs text-accent'>
-                              {formatStatusLabel(item.status)}
-                            </span>
+                            <div className='flex items-center gap-2'>
+                              <span className='rounded-full bg-accent/10 px-2.5 py-1 text-xs text-accent'>
+                                {formatStatusLabel(item.status)}
+                              </span>
+                              <button
+                                type='button'
+                                onClick={() => void handleDeleteInventoryItem(item.id, item.name)}
+                                disabled={deletingInventoryId === item.id}
+                                className='inline-flex items-center gap-1 rounded-md border border-border px-2 py-1 text-xs text-muted-foreground hover:text-foreground disabled:opacity-60'
+                              >
+                                <Trash2 className='h-3.5 w-3.5' />
+                                {deletingInventoryId === item.id ? 'Deleting...' : 'Delete'}
+                              </button>
+                            </div>
                           </div>
 
                           <div className='text-sm text-muted-foreground flex flex-wrap gap-3'>

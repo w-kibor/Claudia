@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import fs from 'fs';
+import mongoose from 'mongoose';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import crypto from 'crypto';
@@ -100,6 +101,18 @@ function parseListField(value) {
 
 function getProfileId(req) {
   return req.query.profileId || req.body.profileId || DEFAULT_PROFILE_ID;
+}
+
+function ensureValidObjectId(id, res, resourceName) {
+  if (mongoose.isValidObjectId(id)) {
+    return true;
+  }
+
+  res.status(400).json({
+    success: false,
+    error: `Invalid ${resourceName} id.`,
+  });
+  return false;
 }
 
 function formatUserRecipe(recipe, req) {
@@ -317,6 +330,10 @@ app.patch('/api/user/recipes/:id', upload.single('image'), async (req, res) => {
     return;
   }
 
+  if (!ensureValidObjectId(req.params.id, res, 'recipe')) {
+    return;
+  }
+
   try {
     const profileId = getProfileId(req);
     const recipe = await UserRecipe.findOne({ _id: req.params.id, profileId });
@@ -345,6 +362,10 @@ app.patch('/api/user/recipes/:id', upload.single('image'), async (req, res) => {
 
 app.delete('/api/user/recipes/:id', async (req, res) => {
   if (!(await ensureDatabaseConnection(req, res))) {
+    return;
+  }
+
+  if (!ensureValidObjectId(req.params.id, res, 'recipe')) {
     return;
   }
 
@@ -425,6 +446,10 @@ app.patch('/api/user/inventory/:id', upload.single('image'), async (req, res) =>
     return;
   }
 
+  if (!ensureValidObjectId(req.params.id, res, 'inventory item')) {
+    return;
+  }
+
   try {
     const profileId = getProfileId(req);
     const item = await InventoryItem.findOne({ _id: req.params.id, profileId });
@@ -459,6 +484,10 @@ app.patch('/api/user/inventory/:id', upload.single('image'), async (req, res) =>
 
 app.delete('/api/user/inventory/:id', async (req, res) => {
   if (!(await ensureDatabaseConnection(req, res))) {
+    return;
+  }
+
+  if (!ensureValidObjectId(req.params.id, res, 'inventory item')) {
     return;
   }
 

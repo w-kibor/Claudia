@@ -35,5 +35,6 @@ export function isDatabaseConnected() {
 }
 
 export function getDatabaseUri() {
-  return getMongoUri();
+  const uri = getMongoUri();
+  return uri.replace(/\/\/([^:@\/]+):([^@\/]+)@/, '//***:***@');
 }

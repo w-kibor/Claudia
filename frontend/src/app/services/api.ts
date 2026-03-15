@@ -124,6 +124,42 @@ export const recipeAPI = {
     return parseJSON(response);
   },
 
+  updateInventoryItem: async (id: string, formData: FormData) => {
+    const response = await fetch(`${API_BASE_URL}/user/inventory/${encodeURIComponent(id)}`, {
+      method: 'PATCH',
+      body: withProfileId(formData),
+    });
+
+    return parseJSON(response);
+  },
+
+  deleteInventoryItem: async (id: string, profileId = DEFAULT_PROFILE_ID) => {
+    const response = await fetch(
+      `${API_BASE_URL}/user/inventory/${encodeURIComponent(id)}?profileId=${encodeURIComponent(profileId)}`,
+      { method: 'DELETE' },
+    );
+
+    return parseJSON(response);
+  },
+
+  updateUserRecipe: async (id: string, formData: FormData) => {
+    const response = await fetch(`${API_BASE_URL}/user/recipes/${encodeURIComponent(id)}`, {
+      method: 'PATCH',
+      body: withProfileId(formData),
+    });
+
+    return parseJSON(response);
+  },
+
+  deleteUserRecipe: async (id: string, profileId = DEFAULT_PROFILE_ID) => {
+    const response = await fetch(
+      `${API_BASE_URL}/user/recipes/${encodeURIComponent(id)}?profileId=${encodeURIComponent(profileId)}`,
+      { method: 'DELETE' },
+    );
+
+    return parseJSON(response);
+  },
+
   // AI Sous-Chef Integration
   askSousChef: async (query: string, recipeContext: any) => {
     const response = await fetch(`${API_BASE_URL}/ai/sous-chef`, {

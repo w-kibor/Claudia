@@ -23,28 +23,14 @@ fs.mkdirSync(uploadDirectory, { recursive: true });
 const app = express();
 const PORT = process.env.PORT || 3001;
 const DEFAULT_PROFILE_ID = process.env.DEFAULT_PROFILE_ID || 'demo-user';
-const envOrigins = process.env.ALLOWED_ORIGINS 
-  ? process.env.ALLOWED_ORIGINS.split(',').map(url => url.trim().replace(/\/$/, '')) 
+const envOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',').map((url) => url.trim().replace(/\/$/, ''))
   : [];
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (like mobile apps or curl)
-      if (!origin) return callback(null, true);
-      
-      // Check if it's in our list OR if it ends with '.vercel.app'
-      const isAllowed = allowedOrigins.includes(origin) || origin.endsWith('.vercel.app');
-
-      if (isAllowed) {
-        callback(null, true);
-      } else {
-        console.log("Blocked by CORS:", origin); // This helps debug in Railway logs
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true,
-  })
-);
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://claudia-sand.vercel.app',
+  ...envOrigins,
+];
 // Initialize Gemini client (requires GEMINI_API_KEY in .env)
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'dummy_key');
 
@@ -83,6 +69,7 @@ app.use(
       }
 
       if (!allowedOrigins.includes(origin)) {
+        console.log('Blocked by CORS:', origin);
         return callback(new Error('CORS policy violation'), false);
       }
 

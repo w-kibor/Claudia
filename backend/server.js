@@ -23,11 +23,9 @@ fs.mkdirSync(uploadDirectory, { recursive: true });
 const app = express();
 const PORT = process.env.PORT || 3001;
 const DEFAULT_PROFILE_ID = process.env.DEFAULT_PROFILE_ID || 'demo-user';
-const envOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : [];
-const allowedOrigins = [
-  'http://localhost:5173',
-  ...envOrigins
-];
+const envOrigins = process.env.ALLOWED_ORIGINS 
+  ? process.env.ALLOWED_ORIGINS.split(',').map(url => url.trim().replace(/\/$/, '')) 
+  : [];
 app.use(
   cors({
     origin: function (origin, callback) {

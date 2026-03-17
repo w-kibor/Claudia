@@ -23,12 +23,11 @@ fs.mkdirSync(uploadDirectory, { recursive: true });
 const app = express();
 const PORT = process.env.PORT || 3001;
 const DEFAULT_PROFILE_ID = process.env.DEFAULT_PROFILE_ID || 'demo-user';
+const envOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : [];
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://claudia-git-main-wilkister-kibors-projects.vercel.app',
-  'https://claudia-sand.vercel.app/',
+  ...envOrigins
 ];
-
 // Initialize Gemini client (requires GEMINI_API_KEY in .env)
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'dummy_key');
 

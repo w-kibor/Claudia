@@ -23,6 +23,10 @@ fs.mkdirSync(uploadDirectory, { recursive: true });
 const app = express();
 const PORT = process.env.PORT || 3001;
 const DEFAULT_PROFILE_ID = process.env.DEFAULT_PROFILE_ID || 'demo-user';
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://your-claudia-project.vercel.app',
+];
 
 // Initialize Gemini client (requires GEMINI_API_KEY in .env)
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'dummy_key');
@@ -53,7 +57,23 @@ const upload = multer({
 });
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin(origin, callback) {
+      // Allow requests with no origin (e.g. curl, Postman, mobile apps)
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      if (!allowedOrigins.includes(origin)) {
+        return callback(new Error('CORS policy violation'), false);
+      }
+
+      return callback(null, true);
+    },
+    credentials: true,
+  }),
+);
 app.use(express.json());
 app.use('/uploads', express.static(uploadDirectory));
 

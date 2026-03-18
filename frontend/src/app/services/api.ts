@@ -1,6 +1,6 @@
 // API Configuration
-const API_ORIGIN = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001').replace(/\/$/, '');
-const API_BASE_URL = `${API_ORIGIN}/api`;
+const API_ORIGIN = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/$/, '');
+const API_BASE_URL = API_ORIGIN ? `${API_ORIGIN}/api` : '/api';
 const DEFAULT_PROFILE_ID = import.meta.env.VITE_PROFILE_ID || 'demo-user';
 
 export interface InventorySummary {

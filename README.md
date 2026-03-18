@@ -253,7 +253,7 @@ MIT License - feel free to use this for learning and projects!
 
 ## 👨‍💻 About
 
-Built by a 4th-year IT Student with experience in:
+Built by Wilkister Kibor experinced in:
 - 🔄 Data Engineering (ETL pipelines)
 - 🤖 AI Agents (Langflow)
 - 📱 Progressive Web Apps (PWA)

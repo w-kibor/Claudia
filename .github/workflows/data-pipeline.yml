@@ -1,0 +1,52 @@
+name: Data Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      fail_on_quality:
+        description: "Fail workflow when quality issues are detected"
+        required: false
+        type: boolean
+        default: true
+  schedule:
+    - cron: "0 3 * * *"
+
+jobs:
+  run-etl:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: data-pipeline
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Ensure output directory exists
+        run: mkdir -p output clean
+
+      - name: Run ETL pipeline
+        env:
+          INPUT_PATH: ${{ vars.PIPELINE_INPUT_PATH || 'raw/recipes_data.csv' }}
+          OUTPUT_PATH: ${{ vars.PIPELINE_OUTPUT_PATH || 'clean/recipes_data.json' }}
+          QUALITY_REPORT_PATH: ${{ vars.PIPELINE_QUALITY_REPORT_PATH || 'clean/recipes_data.quality.json' }}
+          LOG_FILE: output/etl.log
+          FAIL_ON_QUALITY: ${{ github.event_name == 'schedule' && 'true' || (inputs.fail_on_quality && 'true' || 'false') }}
+        run: bash scripts/run_etl.sh
+
+      - name: Upload ETL outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: data-pipeline-output
+          path: |
+            data-pipeline/clean/*.json
+            data-pipeline/output/*.log

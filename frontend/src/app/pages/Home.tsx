@@ -25,8 +25,7 @@ export default function Home() {
     const fetchRecipes = async () => {
       try {
         setLoading(true);
-        // Let's just fetch the first page for motivation
-        const response = await recipeAPI.getRecipes(1, 4); 
+        const response = await recipeAPI.getDailyRecipes(4);
         if (response.success && response.data) {
           setRecipes(response.data);
         }

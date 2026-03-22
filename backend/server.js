@@ -554,6 +554,42 @@ app.get('/api/recipes', (req, res) => {
   }
 });
 
+app.get('/api/recipes/daily', (req, res) => {
+  try {
+    if (!recipes.length) {
+      return res.json({
+        success: true,
+        data: [],
+      });
+    }
+
+    const parsedLimit = Number.parseInt(`${req.query.limit || '4'}`, 10);
+    const limit = Number.isFinite(parsedLimit) ? Math.min(Math.max(parsedLimit, 1), 24) : 4;
+
+    // Rotate deterministically per UTC day to keep picks stable for a full day.
+    const now = new Date();
+    const utcDaySeed = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+    const dayNumber = Math.floor(utcDaySeed / 86400000);
+    const startIndex = dayNumber % recipes.length;
+
+    const dailyRecipes = Array.from({ length: Math.min(limit, recipes.length) }, (_, index) => {
+      const recipeIndex = (startIndex + index) % recipes.length;
+      return recipes[recipeIndex];
+    });
+
+    res.json({
+      success: true,
+      data: dailyRecipes,
+      meta: {
+        daySeed: dayNumber,
+        startIndex,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
 // Search recipes
 app.get('/api/recipes/search', (req, res) => {
   try {

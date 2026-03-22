@@ -55,6 +55,11 @@ export const recipeAPI = {
     return parseJSON(response);
   },
 
+  getDailyRecipes: async (limit = 4) => {
+    const response = await fetch(`${API_BASE_URL}/recipes/daily?limit=${limit}`);
+    return parseJSON(response);
+  },
+
   // Get single recipe by ID
   getRecipeById: async (id: string) => {
     const response = await fetch(`${API_BASE_URL}/recipes/${id}`);

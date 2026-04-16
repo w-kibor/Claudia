@@ -2,10 +2,20 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-INPUT_PATH="${INPUT_PATH:-$ROOT_DIR/raw/recipes_data.csv}"
-OUTPUT_PATH="${OUTPUT_PATH:-$ROOT_DIR/clean/recipes_data.json}"
-QUALITY_REPORT_PATH="${QUALITY_REPORT_PATH:-$ROOT_DIR/clean/recipes_data.quality.json}"
-LOG_FILE="${LOG_FILE:-$ROOT_DIR/output/etl.log}"
+resolve_path() {
+  local path="$1"
+
+  if [[ "$path" = /* ]]; then
+    printf '%s\n' "$path"
+  else
+    printf '%s\n' "$ROOT_DIR/$path"
+  fi
+}
+
+INPUT_PATH="$(resolve_path "${INPUT_PATH:-raw/recipes_data.csv}")"
+OUTPUT_PATH="$(resolve_path "${OUTPUT_PATH:-clean/recipes_data.json}")"
+QUALITY_REPORT_PATH="$(resolve_path "${QUALITY_REPORT_PATH:-clean/recipes_data.quality.json}")"
+LOG_FILE="$(resolve_path "${LOG_FILE:-output/etl.log}")"
 SOURCE_NAME="${SOURCE_NAME:-Kaggle Recipes Dataset}"
 LOG_LEVEL="${LOG_LEVEL:-INFO}"
 BATCH_LOG_INTERVAL="${BATCH_LOG_INTERVAL:-500}"

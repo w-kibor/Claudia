@@ -12,7 +12,7 @@ resolve_path() {
   fi
 }
 
-INPUT_PATH="$(resolve_path "${INPUT_PATH:-raw/recipes_data.csv}")"
+INPUT_PATH="$(resolve_path "${INPUT_PATH:-raw/Recipes_with_Images.csv}")"
 OUTPUT_PATH="$(resolve_path "${OUTPUT_PATH:-clean/recipes_data.json}")"
 QUALITY_REPORT_PATH="$(resolve_path "${QUALITY_REPORT_PATH:-clean/recipes_data.quality.json}")"
 LOG_FILE="$(resolve_path "${LOG_FILE:-output/etl.log}")"
@@ -21,6 +21,14 @@ LOG_LEVEL="${LOG_LEVEL:-INFO}"
 BATCH_LOG_INTERVAL="${BATCH_LOG_INTERVAL:-500}"
 MAX_ERRORS="${MAX_ERRORS:-100}"
 FAIL_ON_QUALITY="${FAIL_ON_QUALITY:-false}"
+
+if [[ ! -f "$INPUT_PATH" ]]; then
+  ALT_INPUT_PATH="$(resolve_path "raw/Recipes_with_Images.csv")"
+  if [[ -f "$ALT_INPUT_PATH" ]]; then
+    printf 'Input file %s not found. Falling back to %s\n' "$INPUT_PATH" "$ALT_INPUT_PATH"
+    INPUT_PATH="$ALT_INPUT_PATH"
+  fi
+fi
 
 mkdir -p "$(dirname "$OUTPUT_PATH")" "$(dirname "$QUALITY_REPORT_PATH")" "$(dirname "$LOG_FILE")"
 

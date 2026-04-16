@@ -36,7 +36,7 @@ jobs:
 
       - name: Run ETL pipeline
         env:
-          INPUT_PATH: ${{ vars.PIPELINE_INPUT_PATH || 'raw/recipes_data.csv' }}
+          INPUT_PATH: ${{ vars.PIPELINE_INPUT_PATH || 'raw/Recipes_with_Images.csv' }}
           OUTPUT_PATH: ${{ vars.PIPELINE_OUTPUT_PATH || 'clean/recipes_data.json' }}
           QUALITY_REPORT_PATH: ${{ vars.PIPELINE_QUALITY_REPORT_PATH || 'clean/recipes_data.quality.json' }}
           LOG_FILE: output/etl.log

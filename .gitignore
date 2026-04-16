@@ -1,5 +1,5 @@
 # Data files - too large for GitHub
-data-pipeline/raw/**
+data-pipeline/raw/recipes_data.csv
 data-pipeline/clean/**
 backend/uploads/**
 

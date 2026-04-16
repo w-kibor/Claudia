@@ -1,16 +1,12 @@
 name: Data Pipeline
 
 on:
+  push:
+    branches: [ main ]  # or your specific branch
   workflow_dispatch:
-    inputs:
-      fail_on_quality:
-        description: "Fail workflow when quality issues are detected"
-        required: false
-        type: boolean
-        default: true
+    # ... existing inputs
   schedule:
     - cron: "0 3 * * *"
-
 jobs:
   run-etl:
     runs-on: ubuntu-latest
